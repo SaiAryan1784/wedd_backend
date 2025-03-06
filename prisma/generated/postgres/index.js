@@ -215,7 +215,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/b.biruly/Desktop/wedd_backend/prisma/generated/postgres",
+      "value": "/home/saiatama1784/blurock/wedd_backend/prisma/generated/postgres",
       "fromEnvVar": null
     },
     "config": {
@@ -227,20 +227,16 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "darwin-arm64",
+        "value": "debian-openssl-3.0.x",
         "native": true
       },
       {
         "fromEnvVar": null,
         "value": "debian-openssl-3.0.x"
-      },
-      {
-        "fromEnvVar": null,
-        "value": "windows"
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/b.biruly/Desktop/wedd_backend/prisma/schema.postgre.prisma",
+    "sourceFilePath": "/home/saiatama1784/blurock/wedd_backend/prisma/schema.postgre.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -254,6 +250,7 @@ const config = {
     "db_postgres"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db_postgres": {
       "url": {
@@ -262,8 +259,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client_postgres {\n  provider      = \"prisma-client-js\"\n  binaryTargets = [\"native\", \"debian-openssl-3.0.x\", \"windows\"]\n  output        = \"./generated/postgres\"\n  datasources   = [db_postgres]\n}\n\ndatasource db_postgres {\n  provider          = \"postgresql\"\n  url               = env(\"POST_GRE_DATABASE_URL\")\n  shadowDatabaseUrl = env(\"SHADOW_DATABASE_URL_PG\")\n}\n\nmodel User {\n  id                  String      @id @default(uuid())\n  email               String      @unique\n  refresh_Token       String?\n  password_hash       String\n  resetPassword_Token String?\n  profile_photo       String?\n  user_name           String\n  phone_number        String\n  role                Role\n  wedding_date        DateTime?\n  wedding_location    String?\n  created_at          DateTime    @default(now())\n  is_verified         Boolean     @default(false)\n  bookings            Booking[]\n  reviews             Review[]\n  cart                Cart[]\n  updated_at          DateTime?\n  checklists          Checklist[] @relation(name: \"UserChecklists\")\n}\n\nmodel Booking {\n  id               String\n  userId           User      @relation(fields: [id], references: [id])\n  booking_id       String    @id @default(uuid())\n  service_id       String // Refers to a Service in MongoDB\n  vendor_id        String // Refers to a Vendor in MongoDB\n  booking_date     DateTime\n  status           String    @default(\"pending\")\n  negotiated_price Float? // Agreed price after negotiation\n  is_negotiable    Boolean   @default(false) // Flag for negotiation\n  totalAmount      Float // Total cost of the booking\n  created_at       DateTime  @default(now())\n  updated_at       DateTime  @updatedAt\n  payments         Payment[]\n}\n\nmodel Cart {\n  id        String   @id @default(uuid())\n  userId    String\n  user      User     @relation(fields: [userId], references: [id])\n  serviceId String // Refers to a Service in MongoDB\n  createdAt DateTime @default(now()) // Timestamp when the service was added\n\n  @@unique([userId, serviceId])\n}\n\nmodel Checklist {\n  id        String   @id @default(uuid())\n  userId    String\n  user      User     @relation(name: \"UserChecklists\", fields: [userId], references: [id])\n  items     Json // Store checklist items as JSON\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nmodel Payment {\n  payment_id     String   @id @default(uuid())\n  booking_id     String\n  amount         Decimal\n  payment_status String // e.g., \"pending\", \"completed\", \"failed\"\n  payment_method String // e.g., \"credit card\", \"PayPal\"\n  transaction_id String\n  payment_date   DateTime\n\n  // Relations\n  booking Booking @relation(fields: [booking_id], references: [booking_id])\n}\n\nmodel Review {\n  review_id   String   @id @default(uuid())\n  vendor_id   String // Refers to a Vendor in MongoDB\n  id          String\n  rating      Int // Rating 1 to 5\n  review_text String\n  created_at  DateTime @default(now())\n  // Relations\n  user        User     @relation(fields: [id], references: [id])\n}\n\nmodel EventSchedule {\n  event_id         String   @id @default(uuid())\n  vendor_id        String // Refers to a Vendor in MongoDB\n  media_id         String // Refers to a Media in MongoDB\n  event_name       String\n  event_start_date DateTime\n  event_end_date   DateTime\n  event_location   String\n  description      String\n  created_at       DateTime @default(now())\n}\n\nenum Role {\n  USER\n  ADMIN\n}\n",
-  "inlineSchemaHash": "0a9838bfc78112ad164af56e5acc8e23f81b45a2769369084b23b66d24de277a",
+  "inlineSchema": "generator client_postgres {\n  provider      = \"prisma-client-js\"\n  binaryTargets = [\"native\", \"debian-openssl-3.0.x\"]\n  output        = \"./generated/postgres\"\n  datasources   = [db_postgres]\n}\n\ndatasource db_postgres {\n  provider          = \"postgresql\"\n  url               = env(\"POST_GRE_DATABASE_URL\")\n  shadowDatabaseUrl = env(\"SHADOW_DATABASE_URL_PG\")\n}\n\nmodel User {\n  id                  String      @id @default(uuid())\n  email               String      @unique\n  refresh_Token       String?\n  password_hash       String\n  resetPassword_Token String?\n  profile_photo       String?\n  user_name           String\n  phone_number        String\n  role                Role\n  wedding_date        DateTime?\n  wedding_location    String?\n  created_at          DateTime    @default(now())\n  is_verified         Boolean     @default(false)\n  bookings            Booking[]\n  reviews             Review[]\n  cart                Cart[]\n  updated_at          DateTime?\n  checklists          Checklist[] @relation(name: \"UserChecklists\")\n}\n\nmodel Booking {\n  id               String\n  userId           User      @relation(fields: [id], references: [id])\n  booking_id       String    @id @default(uuid())\n  service_id       String // Refers to a Service in MongoDB\n  vendor_id        String // Refers to a Vendor in MongoDB\n  booking_date     DateTime\n  status           String    @default(\"pending\")\n  negotiated_price Float? // Agreed price after negotiation\n  is_negotiable    Boolean   @default(false) // Flag for negotiation\n  totalAmount      Float // Total cost of the booking\n  created_at       DateTime  @default(now())\n  updated_at       DateTime  @updatedAt\n  payments         Payment[]\n}\n\nmodel Cart {\n  id        String   @id @default(uuid())\n  userId    String\n  user      User     @relation(fields: [userId], references: [id])\n  serviceId String // Refers to a Service in MongoDB\n  createdAt DateTime @default(now()) // Timestamp when the service was added\n\n  @@unique([userId, serviceId])\n}\n\nmodel Checklist {\n  id        String   @id @default(uuid())\n  userId    String\n  user      User     @relation(name: \"UserChecklists\", fields: [userId], references: [id])\n  items     Json // Store checklist items as JSON\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nmodel Payment {\n  payment_id     String   @id @default(uuid())\n  booking_id     String\n  amount         Decimal\n  payment_status String // e.g., \"pending\", \"completed\", \"failed\"\n  payment_method String // e.g., \"credit card\", \"PayPal\"\n  transaction_id String\n  payment_date   DateTime\n\n  // Relations\n  booking Booking @relation(fields: [booking_id], references: [booking_id])\n}\n\nmodel Review {\n  review_id   String   @id @default(uuid())\n  vendor_id   String // Refers to a Vendor in MongoDB\n  id          String\n  rating      Int // Rating 1 to 5\n  review_text String\n  created_at  DateTime @default(now())\n  // Relations\n  user        User     @relation(fields: [id], references: [id])\n}\n\nmodel EventSchedule {\n  event_id         String   @id @default(uuid())\n  vendor_id        String // Refers to a Vendor in MongoDB\n  media_id         String // Refers to a Media in MongoDB\n  event_name       String\n  event_start_date DateTime\n  event_end_date   DateTime\n  event_location   String\n  description      String\n  created_at       DateTime @default(now())\n}\n\nenum Role {\n  USER\n  ADMIN\n}\n",
+  "inlineSchemaHash": "865c4e45bbafd6799c4dc1b1177bb161e8a327af1ffcf6d1ab6cafab73c44e8a",
   "copyEngine": true
 }
 
@@ -301,16 +298,8 @@ exports.PrismaClient = PrismaClient
 Object.assign(exports, Prisma)
 
 // file annotations for bundling tools to include these files
-path.join(__dirname, "libquery_engine-darwin-arm64.dylib.node");
-path.join(process.cwd(), "prisma/generated/postgres/libquery_engine-darwin-arm64.dylib.node")
-
-// file annotations for bundling tools to include these files
 path.join(__dirname, "libquery_engine-debian-openssl-3.0.x.so.node");
 path.join(process.cwd(), "prisma/generated/postgres/libquery_engine-debian-openssl-3.0.x.so.node")
-
-// file annotations for bundling tools to include these files
-path.join(__dirname, "query_engine-windows.dll.node");
-path.join(process.cwd(), "prisma/generated/postgres/query_engine-windows.dll.node")
 // file annotations for bundling tools to include these files
 path.join(__dirname, "schema.prisma");
 path.join(process.cwd(), "prisma/generated/postgres/schema.prisma")
