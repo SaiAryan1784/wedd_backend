@@ -118,6 +118,11 @@ export type Comment = $Result.DefaultSelection<Prisma.$CommentPayload>
  * 
  */
 export type LikedBlog = $Result.DefaultSelection<Prisma.$LikedBlogPayload>
+/**
+ * Model Partner
+ * 
+ */
+export type Partner = $Result.DefaultSelection<Prisma.$PartnerPayload>
 
 /**
  * Enums
@@ -205,6 +210,57 @@ export const Status: {
 
 export type Status = (typeof Status)[keyof typeof Status]
 
+
+export const PartnerRole: {
+  EVENT_PLANNER: 'EVENT_PLANNER',
+  PHOTOGRAPHER: 'PHOTOGRAPHER',
+  DECORATOR: 'DECORATOR',
+  CATERER: 'CATERER',
+  MAKEUP_ARTIST: 'MAKEUP_ARTIST',
+  OTHER: 'OTHER'
+};
+
+export type PartnerRole = (typeof PartnerRole)[keyof typeof PartnerRole]
+
+
+export const ExperienceRange: {
+  LESS_THAN_ONE: 'LESS_THAN_ONE',
+  ONE_TO_THREE: 'ONE_TO_THREE',
+  THREE_TO_FIVE: 'THREE_TO_FIVE',
+  FIVE_PLUS: 'FIVE_PLUS'
+};
+
+export type ExperienceRange = (typeof ExperienceRange)[keyof typeof ExperienceRange]
+
+
+export const WorkingModel: {
+  SALARY_INCENTIVES: 'SALARY_INCENTIVES',
+  COMMISSION: 'COMMISSION',
+  BOTH: 'BOTH'
+};
+
+export type WorkingModel = (typeof WorkingModel)[keyof typeof WorkingModel]
+
+
+export const AvailabilityType: {
+  FULL_TIME: 'FULL_TIME',
+  PART_TIME: 'PART_TIME',
+  PROJECT_BASED: 'PROJECT_BASED'
+};
+
+export type AvailabilityType = (typeof AvailabilityType)[keyof typeof AvailabilityType]
+
+
+export const ApplicationStatus: {
+  PENDING: 'PENDING',
+  SHORTLISTED: 'SHORTLISTED',
+  INTERVIEWED: 'INTERVIEWED',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+};
+
+export type ApplicationStatus = (typeof ApplicationStatus)[keyof typeof ApplicationStatus]
+
 }
 
 export type TaskPriority = $Enums.TaskPriority
@@ -242,6 +298,26 @@ export const CategoryByRequirement: typeof $Enums.CategoryByRequirement
 export type Status = $Enums.Status
 
 export const Status: typeof $Enums.Status
+
+export type PartnerRole = $Enums.PartnerRole
+
+export const PartnerRole: typeof $Enums.PartnerRole
+
+export type ExperienceRange = $Enums.ExperienceRange
+
+export const ExperienceRange: typeof $Enums.ExperienceRange
+
+export type WorkingModel = $Enums.WorkingModel
+
+export const WorkingModel: typeof $Enums.WorkingModel
+
+export type AvailabilityType = $Enums.AvailabilityType
+
+export const AvailabilityType: typeof $Enums.AvailabilityType
+
+export type ApplicationStatus = $Enums.ApplicationStatus
+
+export const ApplicationStatus: typeof $Enums.ApplicationStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -577,6 +653,16 @@ export class PrismaClient<
     * ```
     */
   get likedBlog(): Prisma.LikedBlogDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.partner`: Exposes CRUD operations for the **Partner** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Partners
+    * const partners = await prisma.partner.findMany()
+    * ```
+    */
+  get partner(): Prisma.PartnerDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1037,7 +1123,8 @@ export namespace Prisma {
     Blog: 'Blog',
     Tags: 'Tags',
     Comment: 'Comment',
-    LikedBlog: 'LikedBlog'
+    LikedBlog: 'LikedBlog',
+    Partner: 'Partner'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1053,7 +1140,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "booking" | "cart" | "checklist" | "event" | "eventVendors" | "eventTask" | "subEvent" | "subEventVendors" | "subEventTask" | "paymentDetails" | "review" | "eventSchedule" | "guest" | "invitationTemplate" | "templateWatchHistory" | "userDataTemplate" | "blog" | "tags" | "comment" | "likedBlog"
+      modelProps: "user" | "booking" | "cart" | "checklist" | "event" | "eventVendors" | "eventTask" | "subEvent" | "subEventVendors" | "subEventTask" | "paymentDetails" | "review" | "eventSchedule" | "guest" | "invitationTemplate" | "templateWatchHistory" | "userDataTemplate" | "blog" | "tags" | "comment" | "likedBlog" | "partner"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2611,6 +2698,80 @@ export namespace Prisma {
           }
         }
       }
+      Partner: {
+        payload: Prisma.$PartnerPayload<ExtArgs>
+        fields: Prisma.PartnerFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PartnerFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PartnerPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PartnerFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PartnerPayload>
+          }
+          findFirst: {
+            args: Prisma.PartnerFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PartnerPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PartnerFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PartnerPayload>
+          }
+          findMany: {
+            args: Prisma.PartnerFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PartnerPayload>[]
+          }
+          create: {
+            args: Prisma.PartnerCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PartnerPayload>
+          }
+          createMany: {
+            args: Prisma.PartnerCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PartnerCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PartnerPayload>[]
+          }
+          delete: {
+            args: Prisma.PartnerDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PartnerPayload>
+          }
+          update: {
+            args: Prisma.PartnerUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PartnerPayload>
+          }
+          deleteMany: {
+            args: Prisma.PartnerDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PartnerUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PartnerUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PartnerPayload>[]
+          }
+          upsert: {
+            args: Prisma.PartnerUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PartnerPayload>
+          }
+          aggregate: {
+            args: Prisma.PartnerAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePartner>
+          }
+          groupBy: {
+            args: Prisma.PartnerGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PartnerGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PartnerCountArgs<ExtArgs>
+            result: $Utils.Optional<PartnerCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2716,6 +2877,7 @@ export namespace Prisma {
     tags?: TagsOmit
     comment?: CommentOmit
     likedBlog?: LikedBlogOmit
+    partner?: PartnerOmit
   }
 
   /* Types for Logging */
@@ -3394,6 +3556,7 @@ export namespace Prisma {
     likedBlogs?: boolean | User$likedBlogsArgs<ExtArgs>
     invitationTemplate?: boolean | User$invitationTemplateArgs<ExtArgs>
     watchHistory?: boolean | User$watchHistoryArgs<ExtArgs>
+    partner?: boolean | User$partnerArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -3464,6 +3627,7 @@ export namespace Prisma {
     likedBlogs?: boolean | User$likedBlogsArgs<ExtArgs>
     invitationTemplate?: boolean | User$invitationTemplateArgs<ExtArgs>
     watchHistory?: boolean | User$watchHistoryArgs<ExtArgs>
+    partner?: boolean | User$partnerArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3483,6 +3647,7 @@ export namespace Prisma {
       likedBlogs: Prisma.$LikedBlogPayload<ExtArgs>[]
       invitationTemplate: Prisma.$InvitationTemplatePayload<ExtArgs>[]
       watchHistory: Prisma.$TemplateWatchHistoryPayload<ExtArgs>[]
+      partner: Prisma.$PartnerPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3905,6 +4070,7 @@ export namespace Prisma {
     likedBlogs<T extends User$likedBlogsArgs<ExtArgs> = {}>(args?: Subset<T, User$likedBlogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LikedBlogPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
     invitationTemplate<T extends User$invitationTemplateArgs<ExtArgs> = {}>(args?: Subset<T, User$invitationTemplateArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvitationTemplatePayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
     watchHistory<T extends User$watchHistoryArgs<ExtArgs> = {}>(args?: Subset<T, User$watchHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TemplateWatchHistoryPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
+    partner<T extends User$partnerArgs<ExtArgs> = {}>(args?: Subset<T, User$partnerArgs<ExtArgs>>): Prisma__PartnerClient<$Result.GetResult<Prisma.$PartnerPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | null, null, ExtArgs, ClientOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4586,6 +4752,25 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: TemplateWatchHistoryScalarFieldEnum | TemplateWatchHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * User.partner
+   */
+  export type User$partnerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Partner
+     */
+    select?: PartnerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Partner
+     */
+    omit?: PartnerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PartnerInclude<ExtArgs> | null
+    where?: PartnerWhereInput
   }
 
   /**
@@ -26683,6 +26868,1327 @@ export namespace Prisma {
 
 
   /**
+   * Model Partner
+   */
+
+  export type AggregatePartner = {
+    _count: PartnerCountAggregateOutputType | null
+    _min: PartnerMinAggregateOutputType | null
+    _max: PartnerMaxAggregateOutputType | null
+  }
+
+  export type PartnerMinAggregateOutputType = {
+    id: string | null
+    fullName: string | null
+    email: string | null
+    phoneNumber: string | null
+    cityRegion: string | null
+    role: $Enums.PartnerRole | null
+    otherRoleDetails: string | null
+    experienceYears: $Enums.ExperienceRange | null
+    workedOnWeddings: boolean | null
+    portfolioUrl: string | null
+    governmentIdUrl: string | null
+    businessCertUrl: string | null
+    motivationNote: string | null
+    preferredModel: $Enums.WorkingModel | null
+    availability: $Enums.AvailabilityType | null
+    applicationStatus: $Enums.ApplicationStatus | null
+    reviewedBy: string | null
+    reviewNotes: string | null
+    agreedNoLeadLeakage: boolean | null
+    agreedPlatformDeals: boolean | null
+    agreedToNDA: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    userId: string | null
+  }
+
+  export type PartnerMaxAggregateOutputType = {
+    id: string | null
+    fullName: string | null
+    email: string | null
+    phoneNumber: string | null
+    cityRegion: string | null
+    role: $Enums.PartnerRole | null
+    otherRoleDetails: string | null
+    experienceYears: $Enums.ExperienceRange | null
+    workedOnWeddings: boolean | null
+    portfolioUrl: string | null
+    governmentIdUrl: string | null
+    businessCertUrl: string | null
+    motivationNote: string | null
+    preferredModel: $Enums.WorkingModel | null
+    availability: $Enums.AvailabilityType | null
+    applicationStatus: $Enums.ApplicationStatus | null
+    reviewedBy: string | null
+    reviewNotes: string | null
+    agreedNoLeadLeakage: boolean | null
+    agreedPlatformDeals: boolean | null
+    agreedToNDA: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    userId: string | null
+  }
+
+  export type PartnerCountAggregateOutputType = {
+    id: number
+    fullName: number
+    email: number
+    phoneNumber: number
+    cityRegion: number
+    role: number
+    otherRoleDetails: number
+    experienceYears: number
+    workedOnWeddings: number
+    portfolioUrl: number
+    governmentIdUrl: number
+    businessCertUrl: number
+    workSamplesUrls: number
+    motivationNote: number
+    preferredModel: number
+    availability: number
+    applicationStatus: number
+    reviewedBy: number
+    reviewNotes: number
+    agreedNoLeadLeakage: number
+    agreedPlatformDeals: number
+    agreedToNDA: number
+    createdAt: number
+    updatedAt: number
+    userId: number
+    _all: number
+  }
+
+
+  export type PartnerMinAggregateInputType = {
+    id?: true
+    fullName?: true
+    email?: true
+    phoneNumber?: true
+    cityRegion?: true
+    role?: true
+    otherRoleDetails?: true
+    experienceYears?: true
+    workedOnWeddings?: true
+    portfolioUrl?: true
+    governmentIdUrl?: true
+    businessCertUrl?: true
+    motivationNote?: true
+    preferredModel?: true
+    availability?: true
+    applicationStatus?: true
+    reviewedBy?: true
+    reviewNotes?: true
+    agreedNoLeadLeakage?: true
+    agreedPlatformDeals?: true
+    agreedToNDA?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
+  }
+
+  export type PartnerMaxAggregateInputType = {
+    id?: true
+    fullName?: true
+    email?: true
+    phoneNumber?: true
+    cityRegion?: true
+    role?: true
+    otherRoleDetails?: true
+    experienceYears?: true
+    workedOnWeddings?: true
+    portfolioUrl?: true
+    governmentIdUrl?: true
+    businessCertUrl?: true
+    motivationNote?: true
+    preferredModel?: true
+    availability?: true
+    applicationStatus?: true
+    reviewedBy?: true
+    reviewNotes?: true
+    agreedNoLeadLeakage?: true
+    agreedPlatformDeals?: true
+    agreedToNDA?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
+  }
+
+  export type PartnerCountAggregateInputType = {
+    id?: true
+    fullName?: true
+    email?: true
+    phoneNumber?: true
+    cityRegion?: true
+    role?: true
+    otherRoleDetails?: true
+    experienceYears?: true
+    workedOnWeddings?: true
+    portfolioUrl?: true
+    governmentIdUrl?: true
+    businessCertUrl?: true
+    workSamplesUrls?: true
+    motivationNote?: true
+    preferredModel?: true
+    availability?: true
+    applicationStatus?: true
+    reviewedBy?: true
+    reviewNotes?: true
+    agreedNoLeadLeakage?: true
+    agreedPlatformDeals?: true
+    agreedToNDA?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
+    _all?: true
+  }
+
+  export type PartnerAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Partner to aggregate.
+     */
+    where?: PartnerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Partners to fetch.
+     */
+    orderBy?: PartnerOrderByWithRelationInput | PartnerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PartnerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Partners from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Partners.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Partners
+    **/
+    _count?: true | PartnerCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PartnerMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PartnerMaxAggregateInputType
+  }
+
+  export type GetPartnerAggregateType<T extends PartnerAggregateArgs> = {
+        [P in keyof T & keyof AggregatePartner]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePartner[P]>
+      : GetScalarType<T[P], AggregatePartner[P]>
+  }
+
+
+
+
+  export type PartnerGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PartnerWhereInput
+    orderBy?: PartnerOrderByWithAggregationInput | PartnerOrderByWithAggregationInput[]
+    by: PartnerScalarFieldEnum[] | PartnerScalarFieldEnum
+    having?: PartnerScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PartnerCountAggregateInputType | true
+    _min?: PartnerMinAggregateInputType
+    _max?: PartnerMaxAggregateInputType
+  }
+
+  export type PartnerGroupByOutputType = {
+    id: string
+    fullName: string
+    email: string
+    phoneNumber: string
+    cityRegion: string
+    role: $Enums.PartnerRole
+    otherRoleDetails: string | null
+    experienceYears: $Enums.ExperienceRange
+    workedOnWeddings: boolean
+    portfolioUrl: string | null
+    governmentIdUrl: string | null
+    businessCertUrl: string | null
+    workSamplesUrls: string[]
+    motivationNote: string
+    preferredModel: $Enums.WorkingModel
+    availability: $Enums.AvailabilityType
+    applicationStatus: $Enums.ApplicationStatus
+    reviewedBy: string | null
+    reviewNotes: string | null
+    agreedNoLeadLeakage: boolean
+    agreedPlatformDeals: boolean
+    agreedToNDA: boolean
+    createdAt: Date
+    updatedAt: Date
+    userId: string | null
+    _count: PartnerCountAggregateOutputType | null
+    _min: PartnerMinAggregateOutputType | null
+    _max: PartnerMaxAggregateOutputType | null
+  }
+
+  type GetPartnerGroupByPayload<T extends PartnerGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PartnerGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PartnerGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PartnerGroupByOutputType[P]>
+            : GetScalarType<T[P], PartnerGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PartnerSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fullName?: boolean
+    email?: boolean
+    phoneNumber?: boolean
+    cityRegion?: boolean
+    role?: boolean
+    otherRoleDetails?: boolean
+    experienceYears?: boolean
+    workedOnWeddings?: boolean
+    portfolioUrl?: boolean
+    governmentIdUrl?: boolean
+    businessCertUrl?: boolean
+    workSamplesUrls?: boolean
+    motivationNote?: boolean
+    preferredModel?: boolean
+    availability?: boolean
+    applicationStatus?: boolean
+    reviewedBy?: boolean
+    reviewNotes?: boolean
+    agreedNoLeadLeakage?: boolean
+    agreedPlatformDeals?: boolean
+    agreedToNDA?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+    user?: boolean | Partner$userArgs<ExtArgs>
+  }, ExtArgs["result"]["partner"]>
+
+  export type PartnerSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fullName?: boolean
+    email?: boolean
+    phoneNumber?: boolean
+    cityRegion?: boolean
+    role?: boolean
+    otherRoleDetails?: boolean
+    experienceYears?: boolean
+    workedOnWeddings?: boolean
+    portfolioUrl?: boolean
+    governmentIdUrl?: boolean
+    businessCertUrl?: boolean
+    workSamplesUrls?: boolean
+    motivationNote?: boolean
+    preferredModel?: boolean
+    availability?: boolean
+    applicationStatus?: boolean
+    reviewedBy?: boolean
+    reviewNotes?: boolean
+    agreedNoLeadLeakage?: boolean
+    agreedPlatformDeals?: boolean
+    agreedToNDA?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+    user?: boolean | Partner$userArgs<ExtArgs>
+  }, ExtArgs["result"]["partner"]>
+
+  export type PartnerSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    fullName?: boolean
+    email?: boolean
+    phoneNumber?: boolean
+    cityRegion?: boolean
+    role?: boolean
+    otherRoleDetails?: boolean
+    experienceYears?: boolean
+    workedOnWeddings?: boolean
+    portfolioUrl?: boolean
+    governmentIdUrl?: boolean
+    businessCertUrl?: boolean
+    workSamplesUrls?: boolean
+    motivationNote?: boolean
+    preferredModel?: boolean
+    availability?: boolean
+    applicationStatus?: boolean
+    reviewedBy?: boolean
+    reviewNotes?: boolean
+    agreedNoLeadLeakage?: boolean
+    agreedPlatformDeals?: boolean
+    agreedToNDA?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+    user?: boolean | Partner$userArgs<ExtArgs>
+  }, ExtArgs["result"]["partner"]>
+
+  export type PartnerSelectScalar = {
+    id?: boolean
+    fullName?: boolean
+    email?: boolean
+    phoneNumber?: boolean
+    cityRegion?: boolean
+    role?: boolean
+    otherRoleDetails?: boolean
+    experienceYears?: boolean
+    workedOnWeddings?: boolean
+    portfolioUrl?: boolean
+    governmentIdUrl?: boolean
+    businessCertUrl?: boolean
+    workSamplesUrls?: boolean
+    motivationNote?: boolean
+    preferredModel?: boolean
+    availability?: boolean
+    applicationStatus?: boolean
+    reviewedBy?: boolean
+    reviewNotes?: boolean
+    agreedNoLeadLeakage?: boolean
+    agreedPlatformDeals?: boolean
+    agreedToNDA?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+  }
+
+  export type PartnerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fullName" | "email" | "phoneNumber" | "cityRegion" | "role" | "otherRoleDetails" | "experienceYears" | "workedOnWeddings" | "portfolioUrl" | "governmentIdUrl" | "businessCertUrl" | "workSamplesUrls" | "motivationNote" | "preferredModel" | "availability" | "applicationStatus" | "reviewedBy" | "reviewNotes" | "agreedNoLeadLeakage" | "agreedPlatformDeals" | "agreedToNDA" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["partner"]>
+  export type PartnerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | Partner$userArgs<ExtArgs>
+  }
+  export type PartnerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | Partner$userArgs<ExtArgs>
+  }
+  export type PartnerIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | Partner$userArgs<ExtArgs>
+  }
+
+  export type $PartnerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Partner"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      fullName: string
+      email: string
+      phoneNumber: string
+      cityRegion: string
+      role: $Enums.PartnerRole
+      otherRoleDetails: string | null
+      experienceYears: $Enums.ExperienceRange
+      workedOnWeddings: boolean
+      portfolioUrl: string | null
+      governmentIdUrl: string | null
+      businessCertUrl: string | null
+      workSamplesUrls: string[]
+      motivationNote: string
+      preferredModel: $Enums.WorkingModel
+      availability: $Enums.AvailabilityType
+      applicationStatus: $Enums.ApplicationStatus
+      reviewedBy: string | null
+      reviewNotes: string | null
+      agreedNoLeadLeakage: boolean
+      agreedPlatformDeals: boolean
+      agreedToNDA: boolean
+      createdAt: Date
+      updatedAt: Date
+      userId: string | null
+    }, ExtArgs["result"]["partner"]>
+    composites: {}
+  }
+
+  type PartnerGetPayload<S extends boolean | null | undefined | PartnerDefaultArgs> = $Result.GetResult<Prisma.$PartnerPayload, S>
+
+  type PartnerCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PartnerFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PartnerCountAggregateInputType | true
+    }
+
+  export interface PartnerDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Partner'], meta: { name: 'Partner' } }
+    /**
+     * Find zero or one Partner that matches the filter.
+     * @param {PartnerFindUniqueArgs} args - Arguments to find a Partner
+     * @example
+     * // Get one Partner
+     * const partner = await prisma.partner.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PartnerFindUniqueArgs>(args: SelectSubset<T, PartnerFindUniqueArgs<ExtArgs>>): Prisma__PartnerClient<$Result.GetResult<Prisma.$PartnerPayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find one Partner that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PartnerFindUniqueOrThrowArgs} args - Arguments to find a Partner
+     * @example
+     * // Get one Partner
+     * const partner = await prisma.partner.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PartnerFindUniqueOrThrowArgs>(args: SelectSubset<T, PartnerFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PartnerClient<$Result.GetResult<Prisma.$PartnerPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first Partner that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PartnerFindFirstArgs} args - Arguments to find a Partner
+     * @example
+     * // Get one Partner
+     * const partner = await prisma.partner.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PartnerFindFirstArgs>(args?: SelectSubset<T, PartnerFindFirstArgs<ExtArgs>>): Prisma__PartnerClient<$Result.GetResult<Prisma.$PartnerPayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first Partner that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PartnerFindFirstOrThrowArgs} args - Arguments to find a Partner
+     * @example
+     * // Get one Partner
+     * const partner = await prisma.partner.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PartnerFindFirstOrThrowArgs>(args?: SelectSubset<T, PartnerFindFirstOrThrowArgs<ExtArgs>>): Prisma__PartnerClient<$Result.GetResult<Prisma.$PartnerPayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find zero or more Partners that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PartnerFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Partners
+     * const partners = await prisma.partner.findMany()
+     * 
+     * // Get first 10 Partners
+     * const partners = await prisma.partner.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const partnerWithIdOnly = await prisma.partner.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PartnerFindManyArgs>(args?: SelectSubset<T, PartnerFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PartnerPayload<ExtArgs>, T, "findMany", ClientOptions>>
+
+    /**
+     * Create a Partner.
+     * @param {PartnerCreateArgs} args - Arguments to create a Partner.
+     * @example
+     * // Create one Partner
+     * const Partner = await prisma.partner.create({
+     *   data: {
+     *     // ... data to create a Partner
+     *   }
+     * })
+     * 
+     */
+    create<T extends PartnerCreateArgs>(args: SelectSubset<T, PartnerCreateArgs<ExtArgs>>): Prisma__PartnerClient<$Result.GetResult<Prisma.$PartnerPayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Create many Partners.
+     * @param {PartnerCreateManyArgs} args - Arguments to create many Partners.
+     * @example
+     * // Create many Partners
+     * const partner = await prisma.partner.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PartnerCreateManyArgs>(args?: SelectSubset<T, PartnerCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Partners and returns the data saved in the database.
+     * @param {PartnerCreateManyAndReturnArgs} args - Arguments to create many Partners.
+     * @example
+     * // Create many Partners
+     * const partner = await prisma.partner.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Partners and only return the `id`
+     * const partnerWithIdOnly = await prisma.partner.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PartnerCreateManyAndReturnArgs>(args?: SelectSubset<T, PartnerCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PartnerPayload<ExtArgs>, T, "createManyAndReturn", ClientOptions>>
+
+    /**
+     * Delete a Partner.
+     * @param {PartnerDeleteArgs} args - Arguments to delete one Partner.
+     * @example
+     * // Delete one Partner
+     * const Partner = await prisma.partner.delete({
+     *   where: {
+     *     // ... filter to delete one Partner
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PartnerDeleteArgs>(args: SelectSubset<T, PartnerDeleteArgs<ExtArgs>>): Prisma__PartnerClient<$Result.GetResult<Prisma.$PartnerPayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Update one Partner.
+     * @param {PartnerUpdateArgs} args - Arguments to update one Partner.
+     * @example
+     * // Update one Partner
+     * const partner = await prisma.partner.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PartnerUpdateArgs>(args: SelectSubset<T, PartnerUpdateArgs<ExtArgs>>): Prisma__PartnerClient<$Result.GetResult<Prisma.$PartnerPayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Delete zero or more Partners.
+     * @param {PartnerDeleteManyArgs} args - Arguments to filter Partners to delete.
+     * @example
+     * // Delete a few Partners
+     * const { count } = await prisma.partner.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PartnerDeleteManyArgs>(args?: SelectSubset<T, PartnerDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Partners.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PartnerUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Partners
+     * const partner = await prisma.partner.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PartnerUpdateManyArgs>(args: SelectSubset<T, PartnerUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Partners and returns the data updated in the database.
+     * @param {PartnerUpdateManyAndReturnArgs} args - Arguments to update many Partners.
+     * @example
+     * // Update many Partners
+     * const partner = await prisma.partner.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Partners and only return the `id`
+     * const partnerWithIdOnly = await prisma.partner.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PartnerUpdateManyAndReturnArgs>(args: SelectSubset<T, PartnerUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PartnerPayload<ExtArgs>, T, "updateManyAndReturn", ClientOptions>>
+
+    /**
+     * Create or update one Partner.
+     * @param {PartnerUpsertArgs} args - Arguments to update or create a Partner.
+     * @example
+     * // Update or create a Partner
+     * const partner = await prisma.partner.upsert({
+     *   create: {
+     *     // ... data to create a Partner
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Partner we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PartnerUpsertArgs>(args: SelectSubset<T, PartnerUpsertArgs<ExtArgs>>): Prisma__PartnerClient<$Result.GetResult<Prisma.$PartnerPayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
+
+
+    /**
+     * Count the number of Partners.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PartnerCountArgs} args - Arguments to filter Partners to count.
+     * @example
+     * // Count the number of Partners
+     * const count = await prisma.partner.count({
+     *   where: {
+     *     // ... the filter for the Partners we want to count
+     *   }
+     * })
+    **/
+    count<T extends PartnerCountArgs>(
+      args?: Subset<T, PartnerCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PartnerCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Partner.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PartnerAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PartnerAggregateArgs>(args: Subset<T, PartnerAggregateArgs>): Prisma.PrismaPromise<GetPartnerAggregateType<T>>
+
+    /**
+     * Group by Partner.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PartnerGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PartnerGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PartnerGroupByArgs['orderBy'] }
+        : { orderBy?: PartnerGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PartnerGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPartnerGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Partner model
+   */
+  readonly fields: PartnerFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Partner.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PartnerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends Partner$userArgs<ExtArgs> = {}>(args?: Subset<T, Partner$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | null, null, ExtArgs, ClientOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Partner model
+   */ 
+  interface PartnerFieldRefs {
+    readonly id: FieldRef<"Partner", 'String'>
+    readonly fullName: FieldRef<"Partner", 'String'>
+    readonly email: FieldRef<"Partner", 'String'>
+    readonly phoneNumber: FieldRef<"Partner", 'String'>
+    readonly cityRegion: FieldRef<"Partner", 'String'>
+    readonly role: FieldRef<"Partner", 'PartnerRole'>
+    readonly otherRoleDetails: FieldRef<"Partner", 'String'>
+    readonly experienceYears: FieldRef<"Partner", 'ExperienceRange'>
+    readonly workedOnWeddings: FieldRef<"Partner", 'Boolean'>
+    readonly portfolioUrl: FieldRef<"Partner", 'String'>
+    readonly governmentIdUrl: FieldRef<"Partner", 'String'>
+    readonly businessCertUrl: FieldRef<"Partner", 'String'>
+    readonly workSamplesUrls: FieldRef<"Partner", 'String[]'>
+    readonly motivationNote: FieldRef<"Partner", 'String'>
+    readonly preferredModel: FieldRef<"Partner", 'WorkingModel'>
+    readonly availability: FieldRef<"Partner", 'AvailabilityType'>
+    readonly applicationStatus: FieldRef<"Partner", 'ApplicationStatus'>
+    readonly reviewedBy: FieldRef<"Partner", 'String'>
+    readonly reviewNotes: FieldRef<"Partner", 'String'>
+    readonly agreedNoLeadLeakage: FieldRef<"Partner", 'Boolean'>
+    readonly agreedPlatformDeals: FieldRef<"Partner", 'Boolean'>
+    readonly agreedToNDA: FieldRef<"Partner", 'Boolean'>
+    readonly createdAt: FieldRef<"Partner", 'DateTime'>
+    readonly updatedAt: FieldRef<"Partner", 'DateTime'>
+    readonly userId: FieldRef<"Partner", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Partner findUnique
+   */
+  export type PartnerFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Partner
+     */
+    select?: PartnerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Partner
+     */
+    omit?: PartnerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PartnerInclude<ExtArgs> | null
+    /**
+     * Filter, which Partner to fetch.
+     */
+    where: PartnerWhereUniqueInput
+  }
+
+  /**
+   * Partner findUniqueOrThrow
+   */
+  export type PartnerFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Partner
+     */
+    select?: PartnerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Partner
+     */
+    omit?: PartnerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PartnerInclude<ExtArgs> | null
+    /**
+     * Filter, which Partner to fetch.
+     */
+    where: PartnerWhereUniqueInput
+  }
+
+  /**
+   * Partner findFirst
+   */
+  export type PartnerFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Partner
+     */
+    select?: PartnerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Partner
+     */
+    omit?: PartnerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PartnerInclude<ExtArgs> | null
+    /**
+     * Filter, which Partner to fetch.
+     */
+    where?: PartnerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Partners to fetch.
+     */
+    orderBy?: PartnerOrderByWithRelationInput | PartnerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Partners.
+     */
+    cursor?: PartnerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Partners from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Partners.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Partners.
+     */
+    distinct?: PartnerScalarFieldEnum | PartnerScalarFieldEnum[]
+  }
+
+  /**
+   * Partner findFirstOrThrow
+   */
+  export type PartnerFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Partner
+     */
+    select?: PartnerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Partner
+     */
+    omit?: PartnerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PartnerInclude<ExtArgs> | null
+    /**
+     * Filter, which Partner to fetch.
+     */
+    where?: PartnerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Partners to fetch.
+     */
+    orderBy?: PartnerOrderByWithRelationInput | PartnerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Partners.
+     */
+    cursor?: PartnerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Partners from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Partners.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Partners.
+     */
+    distinct?: PartnerScalarFieldEnum | PartnerScalarFieldEnum[]
+  }
+
+  /**
+   * Partner findMany
+   */
+  export type PartnerFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Partner
+     */
+    select?: PartnerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Partner
+     */
+    omit?: PartnerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PartnerInclude<ExtArgs> | null
+    /**
+     * Filter, which Partners to fetch.
+     */
+    where?: PartnerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Partners to fetch.
+     */
+    orderBy?: PartnerOrderByWithRelationInput | PartnerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Partners.
+     */
+    cursor?: PartnerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Partners from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Partners.
+     */
+    skip?: number
+    distinct?: PartnerScalarFieldEnum | PartnerScalarFieldEnum[]
+  }
+
+  /**
+   * Partner create
+   */
+  export type PartnerCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Partner
+     */
+    select?: PartnerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Partner
+     */
+    omit?: PartnerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PartnerInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Partner.
+     */
+    data: XOR<PartnerCreateInput, PartnerUncheckedCreateInput>
+  }
+
+  /**
+   * Partner createMany
+   */
+  export type PartnerCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Partners.
+     */
+    data: PartnerCreateManyInput | PartnerCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Partner createManyAndReturn
+   */
+  export type PartnerCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Partner
+     */
+    select?: PartnerSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Partner
+     */
+    omit?: PartnerOmit<ExtArgs> | null
+    /**
+     * The data used to create many Partners.
+     */
+    data: PartnerCreateManyInput | PartnerCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PartnerIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Partner update
+   */
+  export type PartnerUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Partner
+     */
+    select?: PartnerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Partner
+     */
+    omit?: PartnerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PartnerInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Partner.
+     */
+    data: XOR<PartnerUpdateInput, PartnerUncheckedUpdateInput>
+    /**
+     * Choose, which Partner to update.
+     */
+    where: PartnerWhereUniqueInput
+  }
+
+  /**
+   * Partner updateMany
+   */
+  export type PartnerUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Partners.
+     */
+    data: XOR<PartnerUpdateManyMutationInput, PartnerUncheckedUpdateManyInput>
+    /**
+     * Filter which Partners to update
+     */
+    where?: PartnerWhereInput
+  }
+
+  /**
+   * Partner updateManyAndReturn
+   */
+  export type PartnerUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Partner
+     */
+    select?: PartnerSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Partner
+     */
+    omit?: PartnerOmit<ExtArgs> | null
+    /**
+     * The data used to update Partners.
+     */
+    data: XOR<PartnerUpdateManyMutationInput, PartnerUncheckedUpdateManyInput>
+    /**
+     * Filter which Partners to update
+     */
+    where?: PartnerWhereInput
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PartnerIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Partner upsert
+   */
+  export type PartnerUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Partner
+     */
+    select?: PartnerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Partner
+     */
+    omit?: PartnerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PartnerInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Partner to update in case it exists.
+     */
+    where: PartnerWhereUniqueInput
+    /**
+     * In case the Partner found by the `where` argument doesn't exist, create a new Partner with this data.
+     */
+    create: XOR<PartnerCreateInput, PartnerUncheckedCreateInput>
+    /**
+     * In case the Partner was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PartnerUpdateInput, PartnerUncheckedUpdateInput>
+  }
+
+  /**
+   * Partner delete
+   */
+  export type PartnerDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Partner
+     */
+    select?: PartnerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Partner
+     */
+    omit?: PartnerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PartnerInclude<ExtArgs> | null
+    /**
+     * Filter which Partner to delete.
+     */
+    where: PartnerWhereUniqueInput
+  }
+
+  /**
+   * Partner deleteMany
+   */
+  export type PartnerDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Partners to delete
+     */
+    where?: PartnerWhereInput
+  }
+
+  /**
+   * Partner.user
+   */
+  export type Partner$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * Partner without action
+   */
+  export type PartnerDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Partner
+     */
+    select?: PartnerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Partner
+     */
+    omit?: PartnerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PartnerInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -26988,6 +28494,37 @@ export namespace Prisma {
   export type LikedBlogScalarFieldEnum = (typeof LikedBlogScalarFieldEnum)[keyof typeof LikedBlogScalarFieldEnum]
 
 
+  export const PartnerScalarFieldEnum: {
+    id: 'id',
+    fullName: 'fullName',
+    email: 'email',
+    phoneNumber: 'phoneNumber',
+    cityRegion: 'cityRegion',
+    role: 'role',
+    otherRoleDetails: 'otherRoleDetails',
+    experienceYears: 'experienceYears',
+    workedOnWeddings: 'workedOnWeddings',
+    portfolioUrl: 'portfolioUrl',
+    governmentIdUrl: 'governmentIdUrl',
+    businessCertUrl: 'businessCertUrl',
+    workSamplesUrls: 'workSamplesUrls',
+    motivationNote: 'motivationNote',
+    preferredModel: 'preferredModel',
+    availability: 'availability',
+    applicationStatus: 'applicationStatus',
+    reviewedBy: 'reviewedBy',
+    reviewNotes: 'reviewNotes',
+    agreedNoLeadLeakage: 'agreedNoLeadLeakage',
+    agreedPlatformDeals: 'agreedPlatformDeals',
+    agreedToNDA: 'agreedToNDA',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    userId: 'userId'
+  };
+
+  export type PartnerScalarFieldEnum = (typeof PartnerScalarFieldEnum)[keyof typeof PartnerScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -27221,6 +28758,76 @@ export namespace Prisma {
    */
   export type ListEnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status[]'>
     
+
+
+  /**
+   * Reference to a field of type 'PartnerRole'
+   */
+  export type EnumPartnerRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PartnerRole'>
+    
+
+
+  /**
+   * Reference to a field of type 'PartnerRole[]'
+   */
+  export type ListEnumPartnerRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PartnerRole[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'ExperienceRange'
+   */
+  export type EnumExperienceRangeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ExperienceRange'>
+    
+
+
+  /**
+   * Reference to a field of type 'ExperienceRange[]'
+   */
+  export type ListEnumExperienceRangeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ExperienceRange[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'WorkingModel'
+   */
+  export type EnumWorkingModelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WorkingModel'>
+    
+
+
+  /**
+   * Reference to a field of type 'WorkingModel[]'
+   */
+  export type ListEnumWorkingModelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WorkingModel[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'AvailabilityType'
+   */
+  export type EnumAvailabilityTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AvailabilityType'>
+    
+
+
+  /**
+   * Reference to a field of type 'AvailabilityType[]'
+   */
+  export type ListEnumAvailabilityTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AvailabilityType[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'ApplicationStatus'
+   */
+  export type EnumApplicationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ApplicationStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'ApplicationStatus[]'
+   */
+  export type ListEnumApplicationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ApplicationStatus[]'>
+    
   /**
    * Deep Input Types
    */
@@ -27256,6 +28863,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogListRelationFilter
     invitationTemplate?: InvitationTemplateListRelationFilter
     watchHistory?: TemplateWatchHistoryListRelationFilter
+    partner?: XOR<PartnerNullableScalarRelationFilter, PartnerWhereInput> | null
   }
 
   export type UserOrderByWithRelationInput = {
@@ -27285,6 +28893,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogOrderByRelationAggregateInput
     invitationTemplate?: InvitationTemplateOrderByRelationAggregateInput
     watchHistory?: TemplateWatchHistoryOrderByRelationAggregateInput
+    partner?: PartnerOrderByWithRelationInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -27317,6 +28926,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogListRelationFilter
     invitationTemplate?: InvitationTemplateListRelationFilter
     watchHistory?: TemplateWatchHistoryListRelationFilter
+    partner?: XOR<PartnerNullableScalarRelationFilter, PartnerWhereInput> | null
   }, "id" | "email" | "googleUid">
 
   export type UserOrderByWithAggregationInput = {
@@ -28012,6 +29622,7 @@ export namespace Prisma {
   export type PaymentDetailsWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     orderId?: string
+    templateId_userId?: PaymentDetailsTemplateIdUserIdCompoundUniqueInput
     AND?: PaymentDetailsWhereInput | PaymentDetailsWhereInput[]
     OR?: PaymentDetailsWhereInput[]
     NOT?: PaymentDetailsWhereInput | PaymentDetailsWhereInput[]
@@ -28028,7 +29639,7 @@ export namespace Prisma {
     templateId?: StringNullableFilter<"PaymentDetails"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     InvitationTemplate?: XOR<InvitationTemplateNullableScalarRelationFilter, InvitationTemplateWhereInput> | null
-  }, "id" | "orderId">
+  }, "id" | "orderId" | "templateId_userId">
 
   export type PaymentDetailsOrderByWithAggregationInput = {
     id?: SortOrder
@@ -28768,6 +30379,161 @@ export namespace Prisma {
     blogId?: StringWithAggregatesFilter<"LikedBlog"> | string
   }
 
+  export type PartnerWhereInput = {
+    AND?: PartnerWhereInput | PartnerWhereInput[]
+    OR?: PartnerWhereInput[]
+    NOT?: PartnerWhereInput | PartnerWhereInput[]
+    id?: StringFilter<"Partner"> | string
+    fullName?: StringFilter<"Partner"> | string
+    email?: StringFilter<"Partner"> | string
+    phoneNumber?: StringFilter<"Partner"> | string
+    cityRegion?: StringFilter<"Partner"> | string
+    role?: EnumPartnerRoleFilter<"Partner"> | $Enums.PartnerRole
+    otherRoleDetails?: StringNullableFilter<"Partner"> | string | null
+    experienceYears?: EnumExperienceRangeFilter<"Partner"> | $Enums.ExperienceRange
+    workedOnWeddings?: BoolFilter<"Partner"> | boolean
+    portfolioUrl?: StringNullableFilter<"Partner"> | string | null
+    governmentIdUrl?: StringNullableFilter<"Partner"> | string | null
+    businessCertUrl?: StringNullableFilter<"Partner"> | string | null
+    workSamplesUrls?: StringNullableListFilter<"Partner">
+    motivationNote?: StringFilter<"Partner"> | string
+    preferredModel?: EnumWorkingModelFilter<"Partner"> | $Enums.WorkingModel
+    availability?: EnumAvailabilityTypeFilter<"Partner"> | $Enums.AvailabilityType
+    applicationStatus?: EnumApplicationStatusFilter<"Partner"> | $Enums.ApplicationStatus
+    reviewedBy?: StringNullableFilter<"Partner"> | string | null
+    reviewNotes?: StringNullableFilter<"Partner"> | string | null
+    agreedNoLeadLeakage?: BoolFilter<"Partner"> | boolean
+    agreedPlatformDeals?: BoolFilter<"Partner"> | boolean
+    agreedToNDA?: BoolFilter<"Partner"> | boolean
+    createdAt?: DateTimeFilter<"Partner"> | Date | string
+    updatedAt?: DateTimeFilter<"Partner"> | Date | string
+    userId?: StringNullableFilter<"Partner"> | string | null
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+  }
+
+  export type PartnerOrderByWithRelationInput = {
+    id?: SortOrder
+    fullName?: SortOrder
+    email?: SortOrder
+    phoneNumber?: SortOrder
+    cityRegion?: SortOrder
+    role?: SortOrder
+    otherRoleDetails?: SortOrderInput | SortOrder
+    experienceYears?: SortOrder
+    workedOnWeddings?: SortOrder
+    portfolioUrl?: SortOrderInput | SortOrder
+    governmentIdUrl?: SortOrderInput | SortOrder
+    businessCertUrl?: SortOrderInput | SortOrder
+    workSamplesUrls?: SortOrder
+    motivationNote?: SortOrder
+    preferredModel?: SortOrder
+    availability?: SortOrder
+    applicationStatus?: SortOrder
+    reviewedBy?: SortOrderInput | SortOrder
+    reviewNotes?: SortOrderInput | SortOrder
+    agreedNoLeadLeakage?: SortOrder
+    agreedPlatformDeals?: SortOrder
+    agreedToNDA?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type PartnerWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    email?: string
+    userId?: string
+    AND?: PartnerWhereInput | PartnerWhereInput[]
+    OR?: PartnerWhereInput[]
+    NOT?: PartnerWhereInput | PartnerWhereInput[]
+    fullName?: StringFilter<"Partner"> | string
+    phoneNumber?: StringFilter<"Partner"> | string
+    cityRegion?: StringFilter<"Partner"> | string
+    role?: EnumPartnerRoleFilter<"Partner"> | $Enums.PartnerRole
+    otherRoleDetails?: StringNullableFilter<"Partner"> | string | null
+    experienceYears?: EnumExperienceRangeFilter<"Partner"> | $Enums.ExperienceRange
+    workedOnWeddings?: BoolFilter<"Partner"> | boolean
+    portfolioUrl?: StringNullableFilter<"Partner"> | string | null
+    governmentIdUrl?: StringNullableFilter<"Partner"> | string | null
+    businessCertUrl?: StringNullableFilter<"Partner"> | string | null
+    workSamplesUrls?: StringNullableListFilter<"Partner">
+    motivationNote?: StringFilter<"Partner"> | string
+    preferredModel?: EnumWorkingModelFilter<"Partner"> | $Enums.WorkingModel
+    availability?: EnumAvailabilityTypeFilter<"Partner"> | $Enums.AvailabilityType
+    applicationStatus?: EnumApplicationStatusFilter<"Partner"> | $Enums.ApplicationStatus
+    reviewedBy?: StringNullableFilter<"Partner"> | string | null
+    reviewNotes?: StringNullableFilter<"Partner"> | string | null
+    agreedNoLeadLeakage?: BoolFilter<"Partner"> | boolean
+    agreedPlatformDeals?: BoolFilter<"Partner"> | boolean
+    agreedToNDA?: BoolFilter<"Partner"> | boolean
+    createdAt?: DateTimeFilter<"Partner"> | Date | string
+    updatedAt?: DateTimeFilter<"Partner"> | Date | string
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+  }, "id" | "email" | "userId">
+
+  export type PartnerOrderByWithAggregationInput = {
+    id?: SortOrder
+    fullName?: SortOrder
+    email?: SortOrder
+    phoneNumber?: SortOrder
+    cityRegion?: SortOrder
+    role?: SortOrder
+    otherRoleDetails?: SortOrderInput | SortOrder
+    experienceYears?: SortOrder
+    workedOnWeddings?: SortOrder
+    portfolioUrl?: SortOrderInput | SortOrder
+    governmentIdUrl?: SortOrderInput | SortOrder
+    businessCertUrl?: SortOrderInput | SortOrder
+    workSamplesUrls?: SortOrder
+    motivationNote?: SortOrder
+    preferredModel?: SortOrder
+    availability?: SortOrder
+    applicationStatus?: SortOrder
+    reviewedBy?: SortOrderInput | SortOrder
+    reviewNotes?: SortOrderInput | SortOrder
+    agreedNoLeadLeakage?: SortOrder
+    agreedPlatformDeals?: SortOrder
+    agreedToNDA?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    _count?: PartnerCountOrderByAggregateInput
+    _max?: PartnerMaxOrderByAggregateInput
+    _min?: PartnerMinOrderByAggregateInput
+  }
+
+  export type PartnerScalarWhereWithAggregatesInput = {
+    AND?: PartnerScalarWhereWithAggregatesInput | PartnerScalarWhereWithAggregatesInput[]
+    OR?: PartnerScalarWhereWithAggregatesInput[]
+    NOT?: PartnerScalarWhereWithAggregatesInput | PartnerScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Partner"> | string
+    fullName?: StringWithAggregatesFilter<"Partner"> | string
+    email?: StringWithAggregatesFilter<"Partner"> | string
+    phoneNumber?: StringWithAggregatesFilter<"Partner"> | string
+    cityRegion?: StringWithAggregatesFilter<"Partner"> | string
+    role?: EnumPartnerRoleWithAggregatesFilter<"Partner"> | $Enums.PartnerRole
+    otherRoleDetails?: StringNullableWithAggregatesFilter<"Partner"> | string | null
+    experienceYears?: EnumExperienceRangeWithAggregatesFilter<"Partner"> | $Enums.ExperienceRange
+    workedOnWeddings?: BoolWithAggregatesFilter<"Partner"> | boolean
+    portfolioUrl?: StringNullableWithAggregatesFilter<"Partner"> | string | null
+    governmentIdUrl?: StringNullableWithAggregatesFilter<"Partner"> | string | null
+    businessCertUrl?: StringNullableWithAggregatesFilter<"Partner"> | string | null
+    workSamplesUrls?: StringNullableListFilter<"Partner">
+    motivationNote?: StringWithAggregatesFilter<"Partner"> | string
+    preferredModel?: EnumWorkingModelWithAggregatesFilter<"Partner"> | $Enums.WorkingModel
+    availability?: EnumAvailabilityTypeWithAggregatesFilter<"Partner"> | $Enums.AvailabilityType
+    applicationStatus?: EnumApplicationStatusWithAggregatesFilter<"Partner"> | $Enums.ApplicationStatus
+    reviewedBy?: StringNullableWithAggregatesFilter<"Partner"> | string | null
+    reviewNotes?: StringNullableWithAggregatesFilter<"Partner"> | string | null
+    agreedNoLeadLeakage?: BoolWithAggregatesFilter<"Partner"> | boolean
+    agreedPlatformDeals?: BoolWithAggregatesFilter<"Partner"> | boolean
+    agreedToNDA?: BoolWithAggregatesFilter<"Partner"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"Partner"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Partner"> | Date | string
+    userId?: StringNullableWithAggregatesFilter<"Partner"> | string | null
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -28795,6 +30561,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryCreateNestedManyWithoutUserInput
+    partner?: PartnerCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -28824,6 +30591,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateUncheckedCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryUncheckedCreateNestedManyWithoutUserInput
+    partner?: PartnerUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -28853,6 +30621,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUpdateManyWithoutUserNestedInput
+    partner?: PartnerUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -28882,6 +30651,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUncheckedUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUncheckedUpdateManyWithoutUserNestedInput
+    partner?: PartnerUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -30439,6 +32209,201 @@ export namespace Prisma {
     blogId?: StringFieldUpdateOperationsInput | string
   }
 
+  export type PartnerCreateInput = {
+    id?: string
+    fullName: string
+    email: string
+    phoneNumber: string
+    cityRegion: string
+    role: $Enums.PartnerRole
+    otherRoleDetails?: string | null
+    experienceYears: $Enums.ExperienceRange
+    workedOnWeddings: boolean
+    portfolioUrl?: string | null
+    governmentIdUrl?: string | null
+    businessCertUrl?: string | null
+    workSamplesUrls?: PartnerCreateworkSamplesUrlsInput | string[]
+    motivationNote: string
+    preferredModel: $Enums.WorkingModel
+    availability: $Enums.AvailabilityType
+    applicationStatus?: $Enums.ApplicationStatus
+    reviewedBy?: string | null
+    reviewNotes?: string | null
+    agreedNoLeadLeakage: boolean
+    agreedPlatformDeals: boolean
+    agreedToNDA: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user?: UserCreateNestedOneWithoutPartnerInput
+  }
+
+  export type PartnerUncheckedCreateInput = {
+    id?: string
+    fullName: string
+    email: string
+    phoneNumber: string
+    cityRegion: string
+    role: $Enums.PartnerRole
+    otherRoleDetails?: string | null
+    experienceYears: $Enums.ExperienceRange
+    workedOnWeddings: boolean
+    portfolioUrl?: string | null
+    governmentIdUrl?: string | null
+    businessCertUrl?: string | null
+    workSamplesUrls?: PartnerCreateworkSamplesUrlsInput | string[]
+    motivationNote: string
+    preferredModel: $Enums.WorkingModel
+    availability: $Enums.AvailabilityType
+    applicationStatus?: $Enums.ApplicationStatus
+    reviewedBy?: string | null
+    reviewNotes?: string | null
+    agreedNoLeadLeakage: boolean
+    agreedPlatformDeals: boolean
+    agreedToNDA: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId?: string | null
+  }
+
+  export type PartnerUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    cityRegion?: StringFieldUpdateOperationsInput | string
+    role?: EnumPartnerRoleFieldUpdateOperationsInput | $Enums.PartnerRole
+    otherRoleDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    experienceYears?: EnumExperienceRangeFieldUpdateOperationsInput | $Enums.ExperienceRange
+    workedOnWeddings?: BoolFieldUpdateOperationsInput | boolean
+    portfolioUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    governmentIdUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    businessCertUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    workSamplesUrls?: PartnerUpdateworkSamplesUrlsInput | string[]
+    motivationNote?: StringFieldUpdateOperationsInput | string
+    preferredModel?: EnumWorkingModelFieldUpdateOperationsInput | $Enums.WorkingModel
+    availability?: EnumAvailabilityTypeFieldUpdateOperationsInput | $Enums.AvailabilityType
+    applicationStatus?: EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    agreedNoLeadLeakage?: BoolFieldUpdateOperationsInput | boolean
+    agreedPlatformDeals?: BoolFieldUpdateOperationsInput | boolean
+    agreedToNDA?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneWithoutPartnerNestedInput
+  }
+
+  export type PartnerUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    cityRegion?: StringFieldUpdateOperationsInput | string
+    role?: EnumPartnerRoleFieldUpdateOperationsInput | $Enums.PartnerRole
+    otherRoleDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    experienceYears?: EnumExperienceRangeFieldUpdateOperationsInput | $Enums.ExperienceRange
+    workedOnWeddings?: BoolFieldUpdateOperationsInput | boolean
+    portfolioUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    governmentIdUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    businessCertUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    workSamplesUrls?: PartnerUpdateworkSamplesUrlsInput | string[]
+    motivationNote?: StringFieldUpdateOperationsInput | string
+    preferredModel?: EnumWorkingModelFieldUpdateOperationsInput | $Enums.WorkingModel
+    availability?: EnumAvailabilityTypeFieldUpdateOperationsInput | $Enums.AvailabilityType
+    applicationStatus?: EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    agreedNoLeadLeakage?: BoolFieldUpdateOperationsInput | boolean
+    agreedPlatformDeals?: BoolFieldUpdateOperationsInput | boolean
+    agreedToNDA?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type PartnerCreateManyInput = {
+    id?: string
+    fullName: string
+    email: string
+    phoneNumber: string
+    cityRegion: string
+    role: $Enums.PartnerRole
+    otherRoleDetails?: string | null
+    experienceYears: $Enums.ExperienceRange
+    workedOnWeddings: boolean
+    portfolioUrl?: string | null
+    governmentIdUrl?: string | null
+    businessCertUrl?: string | null
+    workSamplesUrls?: PartnerCreateworkSamplesUrlsInput | string[]
+    motivationNote: string
+    preferredModel: $Enums.WorkingModel
+    availability: $Enums.AvailabilityType
+    applicationStatus?: $Enums.ApplicationStatus
+    reviewedBy?: string | null
+    reviewNotes?: string | null
+    agreedNoLeadLeakage: boolean
+    agreedPlatformDeals: boolean
+    agreedToNDA: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId?: string | null
+  }
+
+  export type PartnerUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    cityRegion?: StringFieldUpdateOperationsInput | string
+    role?: EnumPartnerRoleFieldUpdateOperationsInput | $Enums.PartnerRole
+    otherRoleDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    experienceYears?: EnumExperienceRangeFieldUpdateOperationsInput | $Enums.ExperienceRange
+    workedOnWeddings?: BoolFieldUpdateOperationsInput | boolean
+    portfolioUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    governmentIdUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    businessCertUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    workSamplesUrls?: PartnerUpdateworkSamplesUrlsInput | string[]
+    motivationNote?: StringFieldUpdateOperationsInput | string
+    preferredModel?: EnumWorkingModelFieldUpdateOperationsInput | $Enums.WorkingModel
+    availability?: EnumAvailabilityTypeFieldUpdateOperationsInput | $Enums.AvailabilityType
+    applicationStatus?: EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    agreedNoLeadLeakage?: BoolFieldUpdateOperationsInput | boolean
+    agreedPlatformDeals?: BoolFieldUpdateOperationsInput | boolean
+    agreedToNDA?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PartnerUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    cityRegion?: StringFieldUpdateOperationsInput | string
+    role?: EnumPartnerRoleFieldUpdateOperationsInput | $Enums.PartnerRole
+    otherRoleDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    experienceYears?: EnumExperienceRangeFieldUpdateOperationsInput | $Enums.ExperienceRange
+    workedOnWeddings?: BoolFieldUpdateOperationsInput | boolean
+    portfolioUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    governmentIdUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    businessCertUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    workSamplesUrls?: PartnerUpdateworkSamplesUrlsInput | string[]
+    motivationNote?: StringFieldUpdateOperationsInput | string
+    preferredModel?: EnumWorkingModelFieldUpdateOperationsInput | $Enums.WorkingModel
+    availability?: EnumAvailabilityTypeFieldUpdateOperationsInput | $Enums.AvailabilityType
+    applicationStatus?: EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    agreedNoLeadLeakage?: BoolFieldUpdateOperationsInput | boolean
+    agreedPlatformDeals?: BoolFieldUpdateOperationsInput | boolean
+    agreedToNDA?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -30567,6 +32532,11 @@ export namespace Prisma {
     every?: TemplateWatchHistoryWhereInput
     some?: TemplateWatchHistoryWhereInput
     none?: TemplateWatchHistoryWhereInput
+  }
+
+  export type PartnerNullableScalarRelationFilter = {
+    is?: PartnerWhereInput | null
+    isNot?: PartnerWhereInput | null
   }
 
   export type SortOrderInput = {
@@ -31281,6 +33251,11 @@ export namespace Prisma {
     isNot?: InvitationTemplateWhereInput | null
   }
 
+  export type PaymentDetailsTemplateIdUserIdCompoundUniqueInput = {
+    templateId: string
+    userId: string
+  }
+
   export type PaymentDetailsCountOrderByAggregateInput = {
     id?: SortOrder
     orderId?: SortOrder
@@ -31886,6 +33861,178 @@ export namespace Prisma {
     blogId?: SortOrder
   }
 
+  export type EnumPartnerRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.PartnerRole | EnumPartnerRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.PartnerRole[] | ListEnumPartnerRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PartnerRole[] | ListEnumPartnerRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumPartnerRoleFilter<$PrismaModel> | $Enums.PartnerRole
+  }
+
+  export type EnumExperienceRangeFilter<$PrismaModel = never> = {
+    equals?: $Enums.ExperienceRange | EnumExperienceRangeFieldRefInput<$PrismaModel>
+    in?: $Enums.ExperienceRange[] | ListEnumExperienceRangeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ExperienceRange[] | ListEnumExperienceRangeFieldRefInput<$PrismaModel>
+    not?: NestedEnumExperienceRangeFilter<$PrismaModel> | $Enums.ExperienceRange
+  }
+
+  export type EnumWorkingModelFilter<$PrismaModel = never> = {
+    equals?: $Enums.WorkingModel | EnumWorkingModelFieldRefInput<$PrismaModel>
+    in?: $Enums.WorkingModel[] | ListEnumWorkingModelFieldRefInput<$PrismaModel>
+    notIn?: $Enums.WorkingModel[] | ListEnumWorkingModelFieldRefInput<$PrismaModel>
+    not?: NestedEnumWorkingModelFilter<$PrismaModel> | $Enums.WorkingModel
+  }
+
+  export type EnumAvailabilityTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.AvailabilityType | EnumAvailabilityTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.AvailabilityType[] | ListEnumAvailabilityTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AvailabilityType[] | ListEnumAvailabilityTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumAvailabilityTypeFilter<$PrismaModel> | $Enums.AvailabilityType
+  }
+
+  export type EnumApplicationStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.ApplicationStatus | EnumApplicationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ApplicationStatus[] | ListEnumApplicationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ApplicationStatus[] | ListEnumApplicationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumApplicationStatusFilter<$PrismaModel> | $Enums.ApplicationStatus
+  }
+
+  export type UserNullableScalarRelationFilter = {
+    is?: UserWhereInput | null
+    isNot?: UserWhereInput | null
+  }
+
+  export type PartnerCountOrderByAggregateInput = {
+    id?: SortOrder
+    fullName?: SortOrder
+    email?: SortOrder
+    phoneNumber?: SortOrder
+    cityRegion?: SortOrder
+    role?: SortOrder
+    otherRoleDetails?: SortOrder
+    experienceYears?: SortOrder
+    workedOnWeddings?: SortOrder
+    portfolioUrl?: SortOrder
+    governmentIdUrl?: SortOrder
+    businessCertUrl?: SortOrder
+    workSamplesUrls?: SortOrder
+    motivationNote?: SortOrder
+    preferredModel?: SortOrder
+    availability?: SortOrder
+    applicationStatus?: SortOrder
+    reviewedBy?: SortOrder
+    reviewNotes?: SortOrder
+    agreedNoLeadLeakage?: SortOrder
+    agreedPlatformDeals?: SortOrder
+    agreedToNDA?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type PartnerMaxOrderByAggregateInput = {
+    id?: SortOrder
+    fullName?: SortOrder
+    email?: SortOrder
+    phoneNumber?: SortOrder
+    cityRegion?: SortOrder
+    role?: SortOrder
+    otherRoleDetails?: SortOrder
+    experienceYears?: SortOrder
+    workedOnWeddings?: SortOrder
+    portfolioUrl?: SortOrder
+    governmentIdUrl?: SortOrder
+    businessCertUrl?: SortOrder
+    motivationNote?: SortOrder
+    preferredModel?: SortOrder
+    availability?: SortOrder
+    applicationStatus?: SortOrder
+    reviewedBy?: SortOrder
+    reviewNotes?: SortOrder
+    agreedNoLeadLeakage?: SortOrder
+    agreedPlatformDeals?: SortOrder
+    agreedToNDA?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type PartnerMinOrderByAggregateInput = {
+    id?: SortOrder
+    fullName?: SortOrder
+    email?: SortOrder
+    phoneNumber?: SortOrder
+    cityRegion?: SortOrder
+    role?: SortOrder
+    otherRoleDetails?: SortOrder
+    experienceYears?: SortOrder
+    workedOnWeddings?: SortOrder
+    portfolioUrl?: SortOrder
+    governmentIdUrl?: SortOrder
+    businessCertUrl?: SortOrder
+    motivationNote?: SortOrder
+    preferredModel?: SortOrder
+    availability?: SortOrder
+    applicationStatus?: SortOrder
+    reviewedBy?: SortOrder
+    reviewNotes?: SortOrder
+    agreedNoLeadLeakage?: SortOrder
+    agreedPlatformDeals?: SortOrder
+    agreedToNDA?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type EnumPartnerRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.PartnerRole | EnumPartnerRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.PartnerRole[] | ListEnumPartnerRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PartnerRole[] | ListEnumPartnerRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumPartnerRoleWithAggregatesFilter<$PrismaModel> | $Enums.PartnerRole
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPartnerRoleFilter<$PrismaModel>
+    _max?: NestedEnumPartnerRoleFilter<$PrismaModel>
+  }
+
+  export type EnumExperienceRangeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ExperienceRange | EnumExperienceRangeFieldRefInput<$PrismaModel>
+    in?: $Enums.ExperienceRange[] | ListEnumExperienceRangeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ExperienceRange[] | ListEnumExperienceRangeFieldRefInput<$PrismaModel>
+    not?: NestedEnumExperienceRangeWithAggregatesFilter<$PrismaModel> | $Enums.ExperienceRange
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumExperienceRangeFilter<$PrismaModel>
+    _max?: NestedEnumExperienceRangeFilter<$PrismaModel>
+  }
+
+  export type EnumWorkingModelWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.WorkingModel | EnumWorkingModelFieldRefInput<$PrismaModel>
+    in?: $Enums.WorkingModel[] | ListEnumWorkingModelFieldRefInput<$PrismaModel>
+    notIn?: $Enums.WorkingModel[] | ListEnumWorkingModelFieldRefInput<$PrismaModel>
+    not?: NestedEnumWorkingModelWithAggregatesFilter<$PrismaModel> | $Enums.WorkingModel
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumWorkingModelFilter<$PrismaModel>
+    _max?: NestedEnumWorkingModelFilter<$PrismaModel>
+  }
+
+  export type EnumAvailabilityTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AvailabilityType | EnumAvailabilityTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.AvailabilityType[] | ListEnumAvailabilityTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AvailabilityType[] | ListEnumAvailabilityTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumAvailabilityTypeWithAggregatesFilter<$PrismaModel> | $Enums.AvailabilityType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAvailabilityTypeFilter<$PrismaModel>
+    _max?: NestedEnumAvailabilityTypeFilter<$PrismaModel>
+  }
+
+  export type EnumApplicationStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ApplicationStatus | EnumApplicationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ApplicationStatus[] | ListEnumApplicationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ApplicationStatus[] | ListEnumApplicationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumApplicationStatusWithAggregatesFilter<$PrismaModel> | $Enums.ApplicationStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumApplicationStatusFilter<$PrismaModel>
+    _max?: NestedEnumApplicationStatusFilter<$PrismaModel>
+  }
+
   export type BookingCreateNestedManyWithoutUserIdInput = {
     create?: XOR<BookingCreateWithoutUserIdInput, BookingUncheckedCreateWithoutUserIdInput> | BookingCreateWithoutUserIdInput[] | BookingUncheckedCreateWithoutUserIdInput[]
     connectOrCreate?: BookingCreateOrConnectWithoutUserIdInput | BookingCreateOrConnectWithoutUserIdInput[]
@@ -31963,6 +34110,12 @@ export namespace Prisma {
     connect?: TemplateWatchHistoryWhereUniqueInput | TemplateWatchHistoryWhereUniqueInput[]
   }
 
+  export type PartnerCreateNestedOneWithoutUserInput = {
+    create?: XOR<PartnerCreateWithoutUserInput, PartnerUncheckedCreateWithoutUserInput>
+    connectOrCreate?: PartnerCreateOrConnectWithoutUserInput
+    connect?: PartnerWhereUniqueInput
+  }
+
   export type BookingUncheckedCreateNestedManyWithoutUserIdInput = {
     create?: XOR<BookingCreateWithoutUserIdInput, BookingUncheckedCreateWithoutUserIdInput> | BookingCreateWithoutUserIdInput[] | BookingUncheckedCreateWithoutUserIdInput[]
     connectOrCreate?: BookingCreateOrConnectWithoutUserIdInput | BookingCreateOrConnectWithoutUserIdInput[]
@@ -32038,6 +34191,12 @@ export namespace Prisma {
     connectOrCreate?: TemplateWatchHistoryCreateOrConnectWithoutUserInput | TemplateWatchHistoryCreateOrConnectWithoutUserInput[]
     createMany?: TemplateWatchHistoryCreateManyUserInputEnvelope
     connect?: TemplateWatchHistoryWhereUniqueInput | TemplateWatchHistoryWhereUniqueInput[]
+  }
+
+  export type PartnerUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<PartnerCreateWithoutUserInput, PartnerUncheckedCreateWithoutUserInput>
+    connectOrCreate?: PartnerCreateOrConnectWithoutUserInput
+    connect?: PartnerWhereUniqueInput
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -32218,6 +34377,16 @@ export namespace Prisma {
     deleteMany?: TemplateWatchHistoryScalarWhereInput | TemplateWatchHistoryScalarWhereInput[]
   }
 
+  export type PartnerUpdateOneWithoutUserNestedInput = {
+    create?: XOR<PartnerCreateWithoutUserInput, PartnerUncheckedCreateWithoutUserInput>
+    connectOrCreate?: PartnerCreateOrConnectWithoutUserInput
+    upsert?: PartnerUpsertWithoutUserInput
+    disconnect?: PartnerWhereInput | boolean
+    delete?: PartnerWhereInput | boolean
+    connect?: PartnerWhereUniqueInput
+    update?: XOR<XOR<PartnerUpdateToOneWithWhereWithoutUserInput, PartnerUpdateWithoutUserInput>, PartnerUncheckedUpdateWithoutUserInput>
+  }
+
   export type BookingUncheckedUpdateManyWithoutUserIdNestedInput = {
     create?: XOR<BookingCreateWithoutUserIdInput, BookingUncheckedCreateWithoutUserIdInput> | BookingCreateWithoutUserIdInput[] | BookingUncheckedCreateWithoutUserIdInput[]
     connectOrCreate?: BookingCreateOrConnectWithoutUserIdInput | BookingCreateOrConnectWithoutUserIdInput[]
@@ -32370,6 +34539,16 @@ export namespace Prisma {
     update?: TemplateWatchHistoryUpdateWithWhereUniqueWithoutUserInput | TemplateWatchHistoryUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: TemplateWatchHistoryUpdateManyWithWhereWithoutUserInput | TemplateWatchHistoryUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: TemplateWatchHistoryScalarWhereInput | TemplateWatchHistoryScalarWhereInput[]
+  }
+
+  export type PartnerUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<PartnerCreateWithoutUserInput, PartnerUncheckedCreateWithoutUserInput>
+    connectOrCreate?: PartnerCreateOrConnectWithoutUserInput
+    upsert?: PartnerUpsertWithoutUserInput
+    disconnect?: PartnerWhereInput | boolean
+    delete?: PartnerWhereInput | boolean
+    connect?: PartnerWhereUniqueInput
+    update?: XOR<XOR<PartnerUpdateToOneWithWhereWithoutUserInput, PartnerUpdateWithoutUserInput>, PartnerUncheckedUpdateWithoutUserInput>
   }
 
   export type UserCreateNestedOneWithoutBookingsInput = {
@@ -33173,6 +35352,51 @@ export namespace Prisma {
     update?: XOR<XOR<BlogUpdateToOneWithWhereWithoutLikedByInput, BlogUpdateWithoutLikedByInput>, BlogUncheckedUpdateWithoutLikedByInput>
   }
 
+  export type PartnerCreateworkSamplesUrlsInput = {
+    set: string[]
+  }
+
+  export type UserCreateNestedOneWithoutPartnerInput = {
+    create?: XOR<UserCreateWithoutPartnerInput, UserUncheckedCreateWithoutPartnerInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPartnerInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type EnumPartnerRoleFieldUpdateOperationsInput = {
+    set?: $Enums.PartnerRole
+  }
+
+  export type EnumExperienceRangeFieldUpdateOperationsInput = {
+    set?: $Enums.ExperienceRange
+  }
+
+  export type PartnerUpdateworkSamplesUrlsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type EnumWorkingModelFieldUpdateOperationsInput = {
+    set?: $Enums.WorkingModel
+  }
+
+  export type EnumAvailabilityTypeFieldUpdateOperationsInput = {
+    set?: $Enums.AvailabilityType
+  }
+
+  export type EnumApplicationStatusFieldUpdateOperationsInput = {
+    set?: $Enums.ApplicationStatus
+  }
+
+  export type UserUpdateOneWithoutPartnerNestedInput = {
+    create?: XOR<UserCreateWithoutPartnerInput, UserUncheckedCreateWithoutPartnerInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPartnerInput
+    upsert?: UserUpsertWithoutPartnerInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPartnerInput, UserUpdateWithoutPartnerInput>, UserUncheckedUpdateWithoutPartnerInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -33580,6 +35804,91 @@ export namespace Prisma {
     _max?: NestedEnumStatusFilter<$PrismaModel>
   }
 
+  export type NestedEnumPartnerRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.PartnerRole | EnumPartnerRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.PartnerRole[] | ListEnumPartnerRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PartnerRole[] | ListEnumPartnerRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumPartnerRoleFilter<$PrismaModel> | $Enums.PartnerRole
+  }
+
+  export type NestedEnumExperienceRangeFilter<$PrismaModel = never> = {
+    equals?: $Enums.ExperienceRange | EnumExperienceRangeFieldRefInput<$PrismaModel>
+    in?: $Enums.ExperienceRange[] | ListEnumExperienceRangeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ExperienceRange[] | ListEnumExperienceRangeFieldRefInput<$PrismaModel>
+    not?: NestedEnumExperienceRangeFilter<$PrismaModel> | $Enums.ExperienceRange
+  }
+
+  export type NestedEnumWorkingModelFilter<$PrismaModel = never> = {
+    equals?: $Enums.WorkingModel | EnumWorkingModelFieldRefInput<$PrismaModel>
+    in?: $Enums.WorkingModel[] | ListEnumWorkingModelFieldRefInput<$PrismaModel>
+    notIn?: $Enums.WorkingModel[] | ListEnumWorkingModelFieldRefInput<$PrismaModel>
+    not?: NestedEnumWorkingModelFilter<$PrismaModel> | $Enums.WorkingModel
+  }
+
+  export type NestedEnumAvailabilityTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.AvailabilityType | EnumAvailabilityTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.AvailabilityType[] | ListEnumAvailabilityTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AvailabilityType[] | ListEnumAvailabilityTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumAvailabilityTypeFilter<$PrismaModel> | $Enums.AvailabilityType
+  }
+
+  export type NestedEnumApplicationStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.ApplicationStatus | EnumApplicationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ApplicationStatus[] | ListEnumApplicationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ApplicationStatus[] | ListEnumApplicationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumApplicationStatusFilter<$PrismaModel> | $Enums.ApplicationStatus
+  }
+
+  export type NestedEnumPartnerRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.PartnerRole | EnumPartnerRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.PartnerRole[] | ListEnumPartnerRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PartnerRole[] | ListEnumPartnerRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumPartnerRoleWithAggregatesFilter<$PrismaModel> | $Enums.PartnerRole
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPartnerRoleFilter<$PrismaModel>
+    _max?: NestedEnumPartnerRoleFilter<$PrismaModel>
+  }
+
+  export type NestedEnumExperienceRangeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ExperienceRange | EnumExperienceRangeFieldRefInput<$PrismaModel>
+    in?: $Enums.ExperienceRange[] | ListEnumExperienceRangeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ExperienceRange[] | ListEnumExperienceRangeFieldRefInput<$PrismaModel>
+    not?: NestedEnumExperienceRangeWithAggregatesFilter<$PrismaModel> | $Enums.ExperienceRange
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumExperienceRangeFilter<$PrismaModel>
+    _max?: NestedEnumExperienceRangeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumWorkingModelWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.WorkingModel | EnumWorkingModelFieldRefInput<$PrismaModel>
+    in?: $Enums.WorkingModel[] | ListEnumWorkingModelFieldRefInput<$PrismaModel>
+    notIn?: $Enums.WorkingModel[] | ListEnumWorkingModelFieldRefInput<$PrismaModel>
+    not?: NestedEnumWorkingModelWithAggregatesFilter<$PrismaModel> | $Enums.WorkingModel
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumWorkingModelFilter<$PrismaModel>
+    _max?: NestedEnumWorkingModelFilter<$PrismaModel>
+  }
+
+  export type NestedEnumAvailabilityTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AvailabilityType | EnumAvailabilityTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.AvailabilityType[] | ListEnumAvailabilityTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AvailabilityType[] | ListEnumAvailabilityTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumAvailabilityTypeWithAggregatesFilter<$PrismaModel> | $Enums.AvailabilityType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAvailabilityTypeFilter<$PrismaModel>
+    _max?: NestedEnumAvailabilityTypeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumApplicationStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ApplicationStatus | EnumApplicationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ApplicationStatus[] | ListEnumApplicationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ApplicationStatus[] | ListEnumApplicationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumApplicationStatusWithAggregatesFilter<$PrismaModel> | $Enums.ApplicationStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumApplicationStatusFilter<$PrismaModel>
+    _max?: NestedEnumApplicationStatusFilter<$PrismaModel>
+  }
+
   export type BookingCreateWithoutUserIdInput = {
     booking_id?: string
     service_id: string
@@ -33926,6 +36235,65 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type PartnerCreateWithoutUserInput = {
+    id?: string
+    fullName: string
+    email: string
+    phoneNumber: string
+    cityRegion: string
+    role: $Enums.PartnerRole
+    otherRoleDetails?: string | null
+    experienceYears: $Enums.ExperienceRange
+    workedOnWeddings: boolean
+    portfolioUrl?: string | null
+    governmentIdUrl?: string | null
+    businessCertUrl?: string | null
+    workSamplesUrls?: PartnerCreateworkSamplesUrlsInput | string[]
+    motivationNote: string
+    preferredModel: $Enums.WorkingModel
+    availability: $Enums.AvailabilityType
+    applicationStatus?: $Enums.ApplicationStatus
+    reviewedBy?: string | null
+    reviewNotes?: string | null
+    agreedNoLeadLeakage: boolean
+    agreedPlatformDeals: boolean
+    agreedToNDA: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PartnerUncheckedCreateWithoutUserInput = {
+    id?: string
+    fullName: string
+    email: string
+    phoneNumber: string
+    cityRegion: string
+    role: $Enums.PartnerRole
+    otherRoleDetails?: string | null
+    experienceYears: $Enums.ExperienceRange
+    workedOnWeddings: boolean
+    portfolioUrl?: string | null
+    governmentIdUrl?: string | null
+    businessCertUrl?: string | null
+    workSamplesUrls?: PartnerCreateworkSamplesUrlsInput | string[]
+    motivationNote: string
+    preferredModel: $Enums.WorkingModel
+    availability: $Enums.AvailabilityType
+    applicationStatus?: $Enums.ApplicationStatus
+    reviewedBy?: string | null
+    reviewNotes?: string | null
+    agreedNoLeadLeakage: boolean
+    agreedPlatformDeals: boolean
+    agreedToNDA: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PartnerCreateOrConnectWithoutUserInput = {
+    where: PartnerWhereUniqueInput
+    create: XOR<PartnerCreateWithoutUserInput, PartnerUncheckedCreateWithoutUserInput>
+  }
+
   export type BookingUpsertWithWhereUniqueWithoutUserIdInput = {
     where: BookingWhereUniqueInput
     update: XOR<BookingUpdateWithoutUserIdInput, BookingUncheckedUpdateWithoutUserIdInput>
@@ -34259,6 +36627,71 @@ export namespace Prisma {
     watchedAt?: DateTimeFilter<"TemplateWatchHistory"> | Date | string
   }
 
+  export type PartnerUpsertWithoutUserInput = {
+    update: XOR<PartnerUpdateWithoutUserInput, PartnerUncheckedUpdateWithoutUserInput>
+    create: XOR<PartnerCreateWithoutUserInput, PartnerUncheckedCreateWithoutUserInput>
+    where?: PartnerWhereInput
+  }
+
+  export type PartnerUpdateToOneWithWhereWithoutUserInput = {
+    where?: PartnerWhereInput
+    data: XOR<PartnerUpdateWithoutUserInput, PartnerUncheckedUpdateWithoutUserInput>
+  }
+
+  export type PartnerUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    cityRegion?: StringFieldUpdateOperationsInput | string
+    role?: EnumPartnerRoleFieldUpdateOperationsInput | $Enums.PartnerRole
+    otherRoleDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    experienceYears?: EnumExperienceRangeFieldUpdateOperationsInput | $Enums.ExperienceRange
+    workedOnWeddings?: BoolFieldUpdateOperationsInput | boolean
+    portfolioUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    governmentIdUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    businessCertUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    workSamplesUrls?: PartnerUpdateworkSamplesUrlsInput | string[]
+    motivationNote?: StringFieldUpdateOperationsInput | string
+    preferredModel?: EnumWorkingModelFieldUpdateOperationsInput | $Enums.WorkingModel
+    availability?: EnumAvailabilityTypeFieldUpdateOperationsInput | $Enums.AvailabilityType
+    applicationStatus?: EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    agreedNoLeadLeakage?: BoolFieldUpdateOperationsInput | boolean
+    agreedPlatformDeals?: BoolFieldUpdateOperationsInput | boolean
+    agreedToNDA?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PartnerUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    cityRegion?: StringFieldUpdateOperationsInput | string
+    role?: EnumPartnerRoleFieldUpdateOperationsInput | $Enums.PartnerRole
+    otherRoleDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    experienceYears?: EnumExperienceRangeFieldUpdateOperationsInput | $Enums.ExperienceRange
+    workedOnWeddings?: BoolFieldUpdateOperationsInput | boolean
+    portfolioUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    governmentIdUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    businessCertUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    workSamplesUrls?: PartnerUpdateworkSamplesUrlsInput | string[]
+    motivationNote?: StringFieldUpdateOperationsInput | string
+    preferredModel?: EnumWorkingModelFieldUpdateOperationsInput | $Enums.WorkingModel
+    availability?: EnumAvailabilityTypeFieldUpdateOperationsInput | $Enums.AvailabilityType
+    applicationStatus?: EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    agreedNoLeadLeakage?: BoolFieldUpdateOperationsInput | boolean
+    agreedPlatformDeals?: BoolFieldUpdateOperationsInput | boolean
+    agreedToNDA?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type UserCreateWithoutBookingsInput = {
     id?: string
     email: string
@@ -34285,6 +36718,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryCreateNestedManyWithoutUserInput
+    partner?: PartnerCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutBookingsInput = {
@@ -34313,6 +36747,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateUncheckedCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryUncheckedCreateNestedManyWithoutUserInput
+    partner?: PartnerUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutBookingsInput = {
@@ -34357,6 +36792,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUpdateManyWithoutUserNestedInput
+    partner?: PartnerUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBookingsInput = {
@@ -34385,6 +36821,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUncheckedUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUncheckedUpdateManyWithoutUserNestedInput
+    partner?: PartnerUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateWithoutCartInput = {
@@ -34413,6 +36850,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryCreateNestedManyWithoutUserInput
+    partner?: PartnerCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCartInput = {
@@ -34441,6 +36879,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateUncheckedCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryUncheckedCreateNestedManyWithoutUserInput
+    partner?: PartnerUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCartInput = {
@@ -34485,6 +36924,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUpdateManyWithoutUserNestedInput
+    partner?: PartnerUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCartInput = {
@@ -34513,6 +36953,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUncheckedUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUncheckedUpdateManyWithoutUserNestedInput
+    partner?: PartnerUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateWithoutChecklistsInput = {
@@ -34541,6 +36982,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryCreateNestedManyWithoutUserInput
+    partner?: PartnerCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutChecklistsInput = {
@@ -34569,6 +37011,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateUncheckedCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryUncheckedCreateNestedManyWithoutUserInput
+    partner?: PartnerUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutChecklistsInput = {
@@ -34613,6 +37056,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUpdateManyWithoutUserNestedInput
+    partner?: PartnerUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutChecklistsInput = {
@@ -34641,6 +37085,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUncheckedUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUncheckedUpdateManyWithoutUserNestedInput
+    partner?: PartnerUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateWithoutEventInput = {
@@ -34669,6 +37114,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryCreateNestedManyWithoutUserInput
+    partner?: PartnerCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutEventInput = {
@@ -34697,6 +37143,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateUncheckedCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryUncheckedCreateNestedManyWithoutUserInput
+    partner?: PartnerUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutEventInput = {
@@ -34831,6 +37278,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUpdateManyWithoutUserNestedInput
+    partner?: PartnerUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutEventInput = {
@@ -34859,6 +37307,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUncheckedUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUncheckedUpdateManyWithoutUserNestedInput
+    partner?: PartnerUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type EventTaskUpsertWithWhereUniqueWithoutEventInput = {
@@ -35452,6 +37901,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryCreateNestedManyWithoutUserInput
+    partner?: PartnerCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPaymentDetailsInput = {
@@ -35480,6 +37930,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateUncheckedCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryUncheckedCreateNestedManyWithoutUserInput
+    partner?: PartnerUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPaymentDetailsInput = {
@@ -35569,6 +38020,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUpdateManyWithoutUserNestedInput
+    partner?: PartnerUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPaymentDetailsInput = {
@@ -35597,6 +38049,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUncheckedUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUncheckedUpdateManyWithoutUserNestedInput
+    partner?: PartnerUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type InvitationTemplateUpsertWithoutPaymentDetailsInput = {
@@ -35676,6 +38129,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryCreateNestedManyWithoutUserInput
+    partner?: PartnerCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutReviewsInput = {
@@ -35704,6 +38158,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateUncheckedCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryUncheckedCreateNestedManyWithoutUserInput
+    partner?: PartnerUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutReviewsInput = {
@@ -35748,6 +38203,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUpdateManyWithoutUserNestedInput
+    partner?: PartnerUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReviewsInput = {
@@ -35776,6 +38232,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUncheckedUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUncheckedUpdateManyWithoutUserNestedInput
+    partner?: PartnerUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateWithoutGuestsInput = {
@@ -35804,6 +38261,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryCreateNestedManyWithoutUserInput
+    partner?: PartnerCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutGuestsInput = {
@@ -35832,6 +38290,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateUncheckedCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryUncheckedCreateNestedManyWithoutUserInput
+    partner?: PartnerUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutGuestsInput = {
@@ -35876,6 +38335,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUpdateManyWithoutUserNestedInput
+    partner?: PartnerUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutGuestsInput = {
@@ -35904,6 +38364,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUncheckedUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUncheckedUpdateManyWithoutUserNestedInput
+    partner?: PartnerUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateWithoutInvitationTemplateInput = {
@@ -35932,6 +38393,7 @@ export namespace Prisma {
     event?: EventCreateNestedManyWithoutUserInput
     likedBlogs?: LikedBlogCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryCreateNestedManyWithoutUserInput
+    partner?: PartnerCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutInvitationTemplateInput = {
@@ -35960,6 +38422,7 @@ export namespace Prisma {
     event?: EventUncheckedCreateNestedManyWithoutUserInput
     likedBlogs?: LikedBlogUncheckedCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryUncheckedCreateNestedManyWithoutUserInput
+    partner?: PartnerUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutInvitationTemplateInput = {
@@ -36066,6 +38529,7 @@ export namespace Prisma {
     event?: EventUpdateManyWithoutUserNestedInput
     likedBlogs?: LikedBlogUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUpdateManyWithoutUserNestedInput
+    partner?: PartnerUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutInvitationTemplateInput = {
@@ -36094,6 +38558,7 @@ export namespace Prisma {
     event?: EventUncheckedUpdateManyWithoutUserNestedInput
     likedBlogs?: LikedBlogUncheckedUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUncheckedUpdateManyWithoutUserNestedInput
+    partner?: PartnerUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type PaymentDetailsUpsertWithWhereUniqueWithoutInvitationTemplateInput = {
@@ -36154,6 +38619,7 @@ export namespace Prisma {
     event?: EventCreateNestedManyWithoutUserInput
     likedBlogs?: LikedBlogCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateCreateNestedManyWithoutUserInput
+    partner?: PartnerCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutWatchHistoryInput = {
@@ -36182,6 +38648,7 @@ export namespace Prisma {
     event?: EventUncheckedCreateNestedManyWithoutUserInput
     likedBlogs?: LikedBlogUncheckedCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateUncheckedCreateNestedManyWithoutUserInput
+    partner?: PartnerUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutWatchHistoryInput = {
@@ -36271,6 +38738,7 @@ export namespace Prisma {
     event?: EventUpdateManyWithoutUserNestedInput
     likedBlogs?: LikedBlogUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUpdateManyWithoutUserNestedInput
+    partner?: PartnerUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutWatchHistoryInput = {
@@ -36299,6 +38767,7 @@ export namespace Prisma {
     event?: EventUncheckedUpdateManyWithoutUserNestedInput
     likedBlogs?: LikedBlogUncheckedUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUncheckedUpdateManyWithoutUserNestedInput
+    partner?: PartnerUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type InvitationTemplateUpsertWithoutWatchHistoryInput = {
@@ -36378,6 +38847,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryCreateNestedManyWithoutUserInput
+    partner?: PartnerCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutUserDataTemplateInput = {
@@ -36406,6 +38876,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateUncheckedCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryUncheckedCreateNestedManyWithoutUserInput
+    partner?: PartnerUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutUserDataTemplateInput = {
@@ -36450,6 +38921,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUpdateManyWithoutUserNestedInput
+    partner?: PartnerUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUserDataTemplateInput = {
@@ -36478,6 +38950,7 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUncheckedUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUncheckedUpdateManyWithoutUserNestedInput
+    partner?: PartnerUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type TagsCreateWithoutBlogsInput = {
@@ -36782,6 +39255,7 @@ export namespace Prisma {
     event?: EventCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryCreateNestedManyWithoutUserInput
+    partner?: PartnerCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutLikedBlogsInput = {
@@ -36810,6 +39284,7 @@ export namespace Prisma {
     event?: EventUncheckedCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateUncheckedCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryUncheckedCreateNestedManyWithoutUserInput
+    partner?: PartnerUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutLikedBlogsInput = {
@@ -36891,6 +39366,7 @@ export namespace Prisma {
     event?: EventUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUpdateManyWithoutUserNestedInput
+    partner?: PartnerUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutLikedBlogsInput = {
@@ -36919,6 +39395,7 @@ export namespace Prisma {
     event?: EventUncheckedUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUncheckedUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUncheckedUpdateManyWithoutUserNestedInput
+    partner?: PartnerUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type BlogUpsertWithoutLikedByInput = {
@@ -36962,6 +39439,138 @@ export namespace Prisma {
     authorId?: StringFieldUpdateOperationsInput | string
     tags?: TagsUncheckedUpdateManyWithoutBlogsNestedInput
     comments?: CommentUncheckedUpdateManyWithoutBlogNestedInput
+  }
+
+  export type UserCreateWithoutPartnerInput = {
+    id?: string
+    email: string
+    refresh_Token?: string | null
+    password_hash?: string | null
+    googleUid?: string | null
+    resetPassword_Token?: string | null
+    profile_photo?: string | null
+    user_name: string
+    phone_number?: string | null
+    role: $Enums.Role
+    wedding_date?: Date | string | null
+    wedding_location?: string | null
+    created_at?: Date | string
+    is_verified?: boolean
+    updated_at?: Date | string | null
+    bookings?: BookingCreateNestedManyWithoutUserIdInput
+    reviews?: ReviewCreateNestedManyWithoutUserInput
+    cart?: CartCreateNestedManyWithoutUserInput
+    checklists?: ChecklistCreateNestedManyWithoutUserInput
+    guests?: GuestCreateNestedManyWithoutUserInput
+    paymentDetails?: PaymentDetailsCreateNestedManyWithoutUserInput
+    userDataTemplate?: UserDataTemplateCreateNestedManyWithoutUserInput
+    event?: EventCreateNestedManyWithoutUserInput
+    likedBlogs?: LikedBlogCreateNestedManyWithoutUserInput
+    invitationTemplate?: InvitationTemplateCreateNestedManyWithoutUserInput
+    watchHistory?: TemplateWatchHistoryCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutPartnerInput = {
+    id?: string
+    email: string
+    refresh_Token?: string | null
+    password_hash?: string | null
+    googleUid?: string | null
+    resetPassword_Token?: string | null
+    profile_photo?: string | null
+    user_name: string
+    phone_number?: string | null
+    role: $Enums.Role
+    wedding_date?: Date | string | null
+    wedding_location?: string | null
+    created_at?: Date | string
+    is_verified?: boolean
+    updated_at?: Date | string | null
+    bookings?: BookingUncheckedCreateNestedManyWithoutUserIdInput
+    reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
+    cart?: CartUncheckedCreateNestedManyWithoutUserInput
+    checklists?: ChecklistUncheckedCreateNestedManyWithoutUserInput
+    guests?: GuestUncheckedCreateNestedManyWithoutUserInput
+    paymentDetails?: PaymentDetailsUncheckedCreateNestedManyWithoutUserInput
+    userDataTemplate?: UserDataTemplateUncheckedCreateNestedManyWithoutUserInput
+    event?: EventUncheckedCreateNestedManyWithoutUserInput
+    likedBlogs?: LikedBlogUncheckedCreateNestedManyWithoutUserInput
+    invitationTemplate?: InvitationTemplateUncheckedCreateNestedManyWithoutUserInput
+    watchHistory?: TemplateWatchHistoryUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutPartnerInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutPartnerInput, UserUncheckedCreateWithoutPartnerInput>
+  }
+
+  export type UserUpsertWithoutPartnerInput = {
+    update: XOR<UserUpdateWithoutPartnerInput, UserUncheckedUpdateWithoutPartnerInput>
+    create: XOR<UserCreateWithoutPartnerInput, UserUncheckedCreateWithoutPartnerInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutPartnerInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutPartnerInput, UserUncheckedUpdateWithoutPartnerInput>
+  }
+
+  export type UserUpdateWithoutPartnerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    refresh_Token?: NullableStringFieldUpdateOperationsInput | string | null
+    password_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    googleUid?: NullableStringFieldUpdateOperationsInput | string | null
+    resetPassword_Token?: NullableStringFieldUpdateOperationsInput | string | null
+    profile_photo?: NullableStringFieldUpdateOperationsInput | string | null
+    user_name?: StringFieldUpdateOperationsInput | string
+    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    wedding_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    wedding_location?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_verified?: BoolFieldUpdateOperationsInput | boolean
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    bookings?: BookingUpdateManyWithoutUserIdNestedInput
+    reviews?: ReviewUpdateManyWithoutUserNestedInput
+    cart?: CartUpdateManyWithoutUserNestedInput
+    checklists?: ChecklistUpdateManyWithoutUserNestedInput
+    guests?: GuestUpdateManyWithoutUserNestedInput
+    paymentDetails?: PaymentDetailsUpdateManyWithoutUserNestedInput
+    userDataTemplate?: UserDataTemplateUpdateManyWithoutUserNestedInput
+    event?: EventUpdateManyWithoutUserNestedInput
+    likedBlogs?: LikedBlogUpdateManyWithoutUserNestedInput
+    invitationTemplate?: InvitationTemplateUpdateManyWithoutUserNestedInput
+    watchHistory?: TemplateWatchHistoryUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutPartnerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    refresh_Token?: NullableStringFieldUpdateOperationsInput | string | null
+    password_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    googleUid?: NullableStringFieldUpdateOperationsInput | string | null
+    resetPassword_Token?: NullableStringFieldUpdateOperationsInput | string | null
+    profile_photo?: NullableStringFieldUpdateOperationsInput | string | null
+    user_name?: StringFieldUpdateOperationsInput | string
+    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    wedding_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    wedding_location?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_verified?: BoolFieldUpdateOperationsInput | boolean
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    bookings?: BookingUncheckedUpdateManyWithoutUserIdNestedInput
+    reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
+    cart?: CartUncheckedUpdateManyWithoutUserNestedInput
+    checklists?: ChecklistUncheckedUpdateManyWithoutUserNestedInput
+    guests?: GuestUncheckedUpdateManyWithoutUserNestedInput
+    paymentDetails?: PaymentDetailsUncheckedUpdateManyWithoutUserNestedInput
+    userDataTemplate?: UserDataTemplateUncheckedUpdateManyWithoutUserNestedInput
+    event?: EventUncheckedUpdateManyWithoutUserNestedInput
+    likedBlogs?: LikedBlogUncheckedUpdateManyWithoutUserNestedInput
+    invitationTemplate?: InvitationTemplateUncheckedUpdateManyWithoutUserNestedInput
+    watchHistory?: TemplateWatchHistoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type BookingCreateManyUserIdInput = {
