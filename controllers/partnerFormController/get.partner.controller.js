@@ -12,7 +12,6 @@ const getPartners = async (req, res, next) => {
     const where = {};
     if (status) where.status = status;
     if (role) where.role = role;
-    
     // Sort configuration
     const orderBy = {
       [sortBy]: sortOrder.toLowerCase()
@@ -50,11 +49,11 @@ const getPartners = async (req, res, next) => {
 const getPartnerById = async (req, res, next) => {
   try {
     const { id } = req.params;
-    
+
     if (!id) {
       throw new CustomError("Partner application ID is required", 400);
     }
-    
+
     const partner = await postgresPrisma.PartnerApplication.findUnique({
       where: { id },
       include: {
@@ -67,11 +66,11 @@ const getPartnerById = async (req, res, next) => {
         }
       }
     });
-    
+
     if (!partner) {
       throw new CustomError("Partner application not found", 404);
     }
-    
+
     res.status(200).json({
       success: true,
       partner
@@ -89,15 +88,15 @@ const updatePartnerStatus = async (req, res, next) => {
   try {
     const { id } = req.params;
     const { status, adminNotes } = req.body;
-    
+
     if (!id) {
       throw new CustomError("Partner application ID is required", 400);
     }
-    
+
     if (!status || !['PENDING', 'APPROVED', 'REJECTED', 'SHORTLISTED'].includes(status)) {
       throw new CustomError("Valid status is required", 400);
     }
-    
+
     const updatedPartner = await postgresPrisma.PartnerApplication.update({
       where: { id },
       data: { 
@@ -106,7 +105,6 @@ const updatePartnerStatus = async (req, res, next) => {
         updatedAt: new Date()
       }
     });
-    
     res.status(200).json({
       success: true,
       message: `Partner application status updated to ${status}`,

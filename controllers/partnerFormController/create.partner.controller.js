@@ -83,17 +83,14 @@ const createPartner = async (req, res, next) => {
       platformDeals,
       ndaAgreement
     } = req.body;
-    
     // Validate required fields
     if (!fullName || !email || !phoneNumber || !cityRegion || !role) {
       throw new CustomError("All required fields must be provided", 400);
     }
-    
     // Handle file uploads from Cloudinary
     const governmentIdUrl = req.files?.governmentId?.[0]?.path || null; // Renamed
     const businessCertUrl = req.files?.businessCertificate?.[0]?.path || null; // Renamed
     const workSamplesUrls = req.files?.workSamples?.map(file => file.path) || []; // Renamed
-    
     // Create data object matching schema field names exactly
     const partnerData = {
       fullName,
@@ -111,25 +108,22 @@ const createPartner = async (req, res, next) => {
       motivationNote: motivationNote || "", // Required field
       preferredModel: mapWorkingModelToEnum(workingModel),
       availability: mapAvailabilityToEnum(availability),
-      
       // Agreement fields - all required booleans
       agreedNoLeadLeakage: Boolean(noLeadLeakage),
       agreedPlatformDeals: Boolean(platformDeals), // Was missing in original
       agreedToNDA: Boolean(ndaAgreement), // Renamed from ndaAgreement
-      
+
       applicationStatus: "PENDING", // Default status mapped to enum
     };
-    
+
     // Only add userId if it exists (for authenticated submissions)
     if (userId) {
       partnerData.userId = userId;
     }
-    
     // Create the partner application using the direct Partner model
     const newPartner = await postgresPrisma.partner.create({
       data: partnerData,
     });
-    
     res.status(201).json({
       success: true,
       message: "Partner application submitted successfully",

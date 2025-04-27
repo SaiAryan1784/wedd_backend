@@ -38,7 +38,8 @@ model User {
   likedBlogs          LikedBlog[]  
   invitationTemplate  InvitationTemplate[]  @relation(name: "InvitationTemplate")
   watchHistory         TemplateWatchHistory[]
-  partner           Partner?
+    partner           Partner?
+
 }
 
 model Booking {
