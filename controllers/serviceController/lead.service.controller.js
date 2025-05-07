@@ -16,15 +16,22 @@ export const makeLead = async (req, res, next) => {
       });
     }
 
-    const updatedView = await mongoPrisma.Views.update({
+    await mongoPrisma.views.upsert({
       where: {
         serviceId_userId: {
-          serviceId: serviceId,
-          userId: userId,
+          serviceId,
+          userId,
         },
       },
-      data: {
+      update: {
         lead: true,
+        updated_at: new Date(),
+      },
+      create: {
+        serviceId,
+        userId,
+        lead: true,
+        viewCount: 1,
       },
     });
 
@@ -115,7 +122,8 @@ export const leaddetails = async (req, res, next) => {
 
 export const getPartnerDashboardData = async (req, res) => {
   try {
-    const partnerLocation = req.params || { city: "delhi" }; // fallback for testing
+    
+    const partnerLocation = req.params.city
 
     if (!partnerLocation) {
       return res.status(400).json({

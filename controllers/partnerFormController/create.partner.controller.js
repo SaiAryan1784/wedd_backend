@@ -70,7 +70,8 @@ const createPartner = async (req, res, next) => {
       fullName,
       email,
       phoneNumber,
-      cityRegion,
+      city:cityRegion,
+      state,
       role,
       otherRoleDetails, // Renamed from otherRole to match schema
       experience,
@@ -102,6 +103,7 @@ const createPartner = async (req, res, next) => {
       experienceYears: mapExperienceToEnum(experience),
       workedOnWeddings: Boolean(workedOnWeddings),
       portfolioUrl: portfolioUrl || null,
+      state,
       governmentIdUrl,
       businessCertUrl,
       workSamplesUrls, // This is now an array as per schema
@@ -120,6 +122,23 @@ const createPartner = async (req, res, next) => {
     if (userId) {
       partnerData.userId = userId;
     }
+
+    // Check if the user already has a partner application
+    const existingApplication = await postgresPrisma.partner.findFirst({
+      where: {
+        email: email,
+      },
+    });
+
+    if (existingApplication) {
+      return res.status(400).json({
+        success: false,
+        message: "You have already submitted a partner application.",
+      });
+    }
+
+
+
     // Create the partner application using the direct Partner model
     const newPartner = await postgresPrisma.partner.create({
       data: partnerData,
@@ -133,7 +152,7 @@ const createPartner = async (req, res, next) => {
     console.error(
       `Error Type: ${error.constructor.name}, Message: ${error.message}, Stack: ${error.stack}`
     );
-    next(error);
+    next(error.message);
   }
 };
 
