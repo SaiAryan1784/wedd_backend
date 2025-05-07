@@ -150,7 +150,8 @@ export type TaskStatus = (typeof TaskStatus)[keyof typeof TaskStatus]
 export const Role: {
   USER: 'USER',
   ADMIN: 'ADMIN',
-  SUPER_ADMIN: 'SUPER_ADMIN'
+  SUPER_ADMIN: 'SUPER_ADMIN',
+  PARTNER: 'PARTNER'
 };
 
 export type Role = (typeof Role)[keyof typeof Role]
@@ -3556,7 +3557,6 @@ export namespace Prisma {
     likedBlogs?: boolean | User$likedBlogsArgs<ExtArgs>
     invitationTemplate?: boolean | User$invitationTemplateArgs<ExtArgs>
     watchHistory?: boolean | User$watchHistoryArgs<ExtArgs>
-    partner?: boolean | User$partnerArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -3627,7 +3627,6 @@ export namespace Prisma {
     likedBlogs?: boolean | User$likedBlogsArgs<ExtArgs>
     invitationTemplate?: boolean | User$invitationTemplateArgs<ExtArgs>
     watchHistory?: boolean | User$watchHistoryArgs<ExtArgs>
-    partner?: boolean | User$partnerArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3647,7 +3646,6 @@ export namespace Prisma {
       likedBlogs: Prisma.$LikedBlogPayload<ExtArgs>[]
       invitationTemplate: Prisma.$InvitationTemplatePayload<ExtArgs>[]
       watchHistory: Prisma.$TemplateWatchHistoryPayload<ExtArgs>[]
-      partner: Prisma.$PartnerPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4070,7 +4068,6 @@ export namespace Prisma {
     likedBlogs<T extends User$likedBlogsArgs<ExtArgs> = {}>(args?: Subset<T, User$likedBlogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LikedBlogPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
     invitationTemplate<T extends User$invitationTemplateArgs<ExtArgs> = {}>(args?: Subset<T, User$invitationTemplateArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvitationTemplatePayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
     watchHistory<T extends User$watchHistoryArgs<ExtArgs> = {}>(args?: Subset<T, User$watchHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TemplateWatchHistoryPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
-    partner<T extends User$partnerArgs<ExtArgs> = {}>(args?: Subset<T, User$partnerArgs<ExtArgs>>): Prisma__PartnerClient<$Result.GetResult<Prisma.$PartnerPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | null, null, ExtArgs, ClientOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4752,25 +4749,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: TemplateWatchHistoryScalarFieldEnum | TemplateWatchHistoryScalarFieldEnum[]
-  }
-
-  /**
-   * User.partner
-   */
-  export type User$partnerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Partner
-     */
-    select?: PartnerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Partner
-     */
-    omit?: PartnerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PartnerInclude<ExtArgs> | null
-    where?: PartnerWhereInput
   }
 
   /**
@@ -26884,6 +26862,7 @@ export namespace Prisma {
     phoneNumber: string | null
     cityRegion: string | null
     role: $Enums.PartnerRole | null
+    state: string | null
     otherRoleDetails: string | null
     experienceYears: $Enums.ExperienceRange | null
     workedOnWeddings: boolean | null
@@ -26901,7 +26880,6 @@ export namespace Prisma {
     agreedToNDA: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
-    userId: string | null
   }
 
   export type PartnerMaxAggregateOutputType = {
@@ -26911,6 +26889,7 @@ export namespace Prisma {
     phoneNumber: string | null
     cityRegion: string | null
     role: $Enums.PartnerRole | null
+    state: string | null
     otherRoleDetails: string | null
     experienceYears: $Enums.ExperienceRange | null
     workedOnWeddings: boolean | null
@@ -26928,7 +26907,6 @@ export namespace Prisma {
     agreedToNDA: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
-    userId: string | null
   }
 
   export type PartnerCountAggregateOutputType = {
@@ -26938,6 +26916,7 @@ export namespace Prisma {
     phoneNumber: number
     cityRegion: number
     role: number
+    state: number
     otherRoleDetails: number
     experienceYears: number
     workedOnWeddings: number
@@ -26956,7 +26935,6 @@ export namespace Prisma {
     agreedToNDA: number
     createdAt: number
     updatedAt: number
-    userId: number
     _all: number
   }
 
@@ -26968,6 +26946,7 @@ export namespace Prisma {
     phoneNumber?: true
     cityRegion?: true
     role?: true
+    state?: true
     otherRoleDetails?: true
     experienceYears?: true
     workedOnWeddings?: true
@@ -26985,7 +26964,6 @@ export namespace Prisma {
     agreedToNDA?: true
     createdAt?: true
     updatedAt?: true
-    userId?: true
   }
 
   export type PartnerMaxAggregateInputType = {
@@ -26995,6 +26973,7 @@ export namespace Prisma {
     phoneNumber?: true
     cityRegion?: true
     role?: true
+    state?: true
     otherRoleDetails?: true
     experienceYears?: true
     workedOnWeddings?: true
@@ -27012,7 +26991,6 @@ export namespace Prisma {
     agreedToNDA?: true
     createdAt?: true
     updatedAt?: true
-    userId?: true
   }
 
   export type PartnerCountAggregateInputType = {
@@ -27022,6 +27000,7 @@ export namespace Prisma {
     phoneNumber?: true
     cityRegion?: true
     role?: true
+    state?: true
     otherRoleDetails?: true
     experienceYears?: true
     workedOnWeddings?: true
@@ -27040,7 +27019,6 @@ export namespace Prisma {
     agreedToNDA?: true
     createdAt?: true
     updatedAt?: true
-    userId?: true
     _all?: true
   }
 
@@ -27123,6 +27101,7 @@ export namespace Prisma {
     phoneNumber: string
     cityRegion: string
     role: $Enums.PartnerRole
+    state: string
     otherRoleDetails: string | null
     experienceYears: $Enums.ExperienceRange
     workedOnWeddings: boolean
@@ -27141,7 +27120,6 @@ export namespace Prisma {
     agreedToNDA: boolean
     createdAt: Date
     updatedAt: Date
-    userId: string | null
     _count: PartnerCountAggregateOutputType | null
     _min: PartnerMinAggregateOutputType | null
     _max: PartnerMaxAggregateOutputType | null
@@ -27168,6 +27146,7 @@ export namespace Prisma {
     phoneNumber?: boolean
     cityRegion?: boolean
     role?: boolean
+    state?: boolean
     otherRoleDetails?: boolean
     experienceYears?: boolean
     workedOnWeddings?: boolean
@@ -27186,8 +27165,6 @@ export namespace Prisma {
     agreedToNDA?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    userId?: boolean
-    user?: boolean | Partner$userArgs<ExtArgs>
   }, ExtArgs["result"]["partner"]>
 
   export type PartnerSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -27197,6 +27174,7 @@ export namespace Prisma {
     phoneNumber?: boolean
     cityRegion?: boolean
     role?: boolean
+    state?: boolean
     otherRoleDetails?: boolean
     experienceYears?: boolean
     workedOnWeddings?: boolean
@@ -27215,8 +27193,6 @@ export namespace Prisma {
     agreedToNDA?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    userId?: boolean
-    user?: boolean | Partner$userArgs<ExtArgs>
   }, ExtArgs["result"]["partner"]>
 
   export type PartnerSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -27226,6 +27202,7 @@ export namespace Prisma {
     phoneNumber?: boolean
     cityRegion?: boolean
     role?: boolean
+    state?: boolean
     otherRoleDetails?: boolean
     experienceYears?: boolean
     workedOnWeddings?: boolean
@@ -27244,8 +27221,6 @@ export namespace Prisma {
     agreedToNDA?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    userId?: boolean
-    user?: boolean | Partner$userArgs<ExtArgs>
   }, ExtArgs["result"]["partner"]>
 
   export type PartnerSelectScalar = {
@@ -27255,6 +27230,7 @@ export namespace Prisma {
     phoneNumber?: boolean
     cityRegion?: boolean
     role?: boolean
+    state?: boolean
     otherRoleDetails?: boolean
     experienceYears?: boolean
     workedOnWeddings?: boolean
@@ -27273,25 +27249,13 @@ export namespace Prisma {
     agreedToNDA?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    userId?: boolean
   }
 
-  export type PartnerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fullName" | "email" | "phoneNumber" | "cityRegion" | "role" | "otherRoleDetails" | "experienceYears" | "workedOnWeddings" | "portfolioUrl" | "governmentIdUrl" | "businessCertUrl" | "workSamplesUrls" | "motivationNote" | "preferredModel" | "availability" | "applicationStatus" | "reviewedBy" | "reviewNotes" | "agreedNoLeadLeakage" | "agreedPlatformDeals" | "agreedToNDA" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["partner"]>
-  export type PartnerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | Partner$userArgs<ExtArgs>
-  }
-  export type PartnerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | Partner$userArgs<ExtArgs>
-  }
-  export type PartnerIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | Partner$userArgs<ExtArgs>
-  }
+  export type PartnerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "fullName" | "email" | "phoneNumber" | "cityRegion" | "role" | "state" | "otherRoleDetails" | "experienceYears" | "workedOnWeddings" | "portfolioUrl" | "governmentIdUrl" | "businessCertUrl" | "workSamplesUrls" | "motivationNote" | "preferredModel" | "availability" | "applicationStatus" | "reviewedBy" | "reviewNotes" | "agreedNoLeadLeakage" | "agreedPlatformDeals" | "agreedToNDA" | "createdAt" | "updatedAt", ExtArgs["result"]["partner"]>
 
   export type $PartnerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Partner"
-    objects: {
-      user: Prisma.$UserPayload<ExtArgs> | null
-    }
+    objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: string
       fullName: string
@@ -27299,6 +27263,7 @@ export namespace Prisma {
       phoneNumber: string
       cityRegion: string
       role: $Enums.PartnerRole
+      state: string
       otherRoleDetails: string | null
       experienceYears: $Enums.ExperienceRange
       workedOnWeddings: boolean
@@ -27317,7 +27282,6 @@ export namespace Prisma {
       agreedToNDA: boolean
       createdAt: Date
       updatedAt: Date
-      userId: string | null
     }, ExtArgs["result"]["partner"]>
     composites: {}
   }
@@ -27712,7 +27676,6 @@ export namespace Prisma {
    */
   export interface Prisma__PartnerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends Partner$userArgs<ExtArgs> = {}>(args?: Subset<T, Partner$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | null, null, ExtArgs, ClientOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -27748,6 +27711,7 @@ export namespace Prisma {
     readonly phoneNumber: FieldRef<"Partner", 'String'>
     readonly cityRegion: FieldRef<"Partner", 'String'>
     readonly role: FieldRef<"Partner", 'PartnerRole'>
+    readonly state: FieldRef<"Partner", 'String'>
     readonly otherRoleDetails: FieldRef<"Partner", 'String'>
     readonly experienceYears: FieldRef<"Partner", 'ExperienceRange'>
     readonly workedOnWeddings: FieldRef<"Partner", 'Boolean'>
@@ -27766,7 +27730,6 @@ export namespace Prisma {
     readonly agreedToNDA: FieldRef<"Partner", 'Boolean'>
     readonly createdAt: FieldRef<"Partner", 'DateTime'>
     readonly updatedAt: FieldRef<"Partner", 'DateTime'>
-    readonly userId: FieldRef<"Partner", 'String'>
   }
     
 
@@ -27783,10 +27746,6 @@ export namespace Prisma {
      * Omit specific fields from the Partner
      */
     omit?: PartnerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PartnerInclude<ExtArgs> | null
     /**
      * Filter, which Partner to fetch.
      */
@@ -27806,10 +27765,6 @@ export namespace Prisma {
      */
     omit?: PartnerOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PartnerInclude<ExtArgs> | null
-    /**
      * Filter, which Partner to fetch.
      */
     where: PartnerWhereUniqueInput
@@ -27827,10 +27782,6 @@ export namespace Prisma {
      * Omit specific fields from the Partner
      */
     omit?: PartnerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PartnerInclude<ExtArgs> | null
     /**
      * Filter, which Partner to fetch.
      */
@@ -27880,10 +27831,6 @@ export namespace Prisma {
      */
     omit?: PartnerOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PartnerInclude<ExtArgs> | null
-    /**
      * Filter, which Partner to fetch.
      */
     where?: PartnerWhereInput
@@ -27932,10 +27879,6 @@ export namespace Prisma {
      */
     omit?: PartnerOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PartnerInclude<ExtArgs> | null
-    /**
      * Filter, which Partners to fetch.
      */
     where?: PartnerWhereInput
@@ -27979,10 +27922,6 @@ export namespace Prisma {
      */
     omit?: PartnerOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PartnerInclude<ExtArgs> | null
-    /**
      * The data needed to create a Partner.
      */
     data: XOR<PartnerCreateInput, PartnerUncheckedCreateInput>
@@ -28016,10 +27955,6 @@ export namespace Prisma {
      */
     data: PartnerCreateManyInput | PartnerCreateManyInput[]
     skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PartnerIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -28034,10 +27969,6 @@ export namespace Prisma {
      * Omit specific fields from the Partner
      */
     omit?: PartnerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PartnerInclude<ExtArgs> | null
     /**
      * The data needed to update a Partner.
      */
@@ -28082,10 +28013,6 @@ export namespace Prisma {
      * Filter which Partners to update
      */
     where?: PartnerWhereInput
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PartnerIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -28100,10 +28027,6 @@ export namespace Prisma {
      * Omit specific fields from the Partner
      */
     omit?: PartnerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PartnerInclude<ExtArgs> | null
     /**
      * The filter to search for the Partner to update in case it exists.
      */
@@ -28131,10 +28054,6 @@ export namespace Prisma {
      */
     omit?: PartnerOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PartnerInclude<ExtArgs> | null
-    /**
      * Filter which Partner to delete.
      */
     where: PartnerWhereUniqueInput
@@ -28151,25 +28070,6 @@ export namespace Prisma {
   }
 
   /**
-   * Partner.user
-   */
-  export type Partner$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    where?: UserWhereInput
-  }
-
-  /**
    * Partner without action
    */
   export type PartnerDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -28181,10 +28081,6 @@ export namespace Prisma {
      * Omit specific fields from the Partner
      */
     omit?: PartnerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PartnerInclude<ExtArgs> | null
   }
 
 
@@ -28501,6 +28397,7 @@ export namespace Prisma {
     phoneNumber: 'phoneNumber',
     cityRegion: 'cityRegion',
     role: 'role',
+    state: 'state',
     otherRoleDetails: 'otherRoleDetails',
     experienceYears: 'experienceYears',
     workedOnWeddings: 'workedOnWeddings',
@@ -28518,8 +28415,7 @@ export namespace Prisma {
     agreedPlatformDeals: 'agreedPlatformDeals',
     agreedToNDA: 'agreedToNDA',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    userId: 'userId'
+    updatedAt: 'updatedAt'
   };
 
   export type PartnerScalarFieldEnum = (typeof PartnerScalarFieldEnum)[keyof typeof PartnerScalarFieldEnum]
@@ -28863,7 +28759,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogListRelationFilter
     invitationTemplate?: InvitationTemplateListRelationFilter
     watchHistory?: TemplateWatchHistoryListRelationFilter
-    partner?: XOR<PartnerNullableScalarRelationFilter, PartnerWhereInput> | null
   }
 
   export type UserOrderByWithRelationInput = {
@@ -28893,7 +28788,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogOrderByRelationAggregateInput
     invitationTemplate?: InvitationTemplateOrderByRelationAggregateInput
     watchHistory?: TemplateWatchHistoryOrderByRelationAggregateInput
-    partner?: PartnerOrderByWithRelationInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -28926,7 +28820,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogListRelationFilter
     invitationTemplate?: InvitationTemplateListRelationFilter
     watchHistory?: TemplateWatchHistoryListRelationFilter
-    partner?: XOR<PartnerNullableScalarRelationFilter, PartnerWhereInput> | null
   }, "id" | "email" | "googleUid">
 
   export type UserOrderByWithAggregationInput = {
@@ -30389,6 +30282,7 @@ export namespace Prisma {
     phoneNumber?: StringFilter<"Partner"> | string
     cityRegion?: StringFilter<"Partner"> | string
     role?: EnumPartnerRoleFilter<"Partner"> | $Enums.PartnerRole
+    state?: StringFilter<"Partner"> | string
     otherRoleDetails?: StringNullableFilter<"Partner"> | string | null
     experienceYears?: EnumExperienceRangeFilter<"Partner"> | $Enums.ExperienceRange
     workedOnWeddings?: BoolFilter<"Partner"> | boolean
@@ -30407,8 +30301,6 @@ export namespace Prisma {
     agreedToNDA?: BoolFilter<"Partner"> | boolean
     createdAt?: DateTimeFilter<"Partner"> | Date | string
     updatedAt?: DateTimeFilter<"Partner"> | Date | string
-    userId?: StringNullableFilter<"Partner"> | string | null
-    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }
 
   export type PartnerOrderByWithRelationInput = {
@@ -30418,6 +30310,7 @@ export namespace Prisma {
     phoneNumber?: SortOrder
     cityRegion?: SortOrder
     role?: SortOrder
+    state?: SortOrder
     otherRoleDetails?: SortOrderInput | SortOrder
     experienceYears?: SortOrder
     workedOnWeddings?: SortOrder
@@ -30436,14 +30329,11 @@ export namespace Prisma {
     agreedToNDA?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    userId?: SortOrderInput | SortOrder
-    user?: UserOrderByWithRelationInput
   }
 
   export type PartnerWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     email?: string
-    userId?: string
     AND?: PartnerWhereInput | PartnerWhereInput[]
     OR?: PartnerWhereInput[]
     NOT?: PartnerWhereInput | PartnerWhereInput[]
@@ -30451,6 +30341,7 @@ export namespace Prisma {
     phoneNumber?: StringFilter<"Partner"> | string
     cityRegion?: StringFilter<"Partner"> | string
     role?: EnumPartnerRoleFilter<"Partner"> | $Enums.PartnerRole
+    state?: StringFilter<"Partner"> | string
     otherRoleDetails?: StringNullableFilter<"Partner"> | string | null
     experienceYears?: EnumExperienceRangeFilter<"Partner"> | $Enums.ExperienceRange
     workedOnWeddings?: BoolFilter<"Partner"> | boolean
@@ -30469,8 +30360,7 @@ export namespace Prisma {
     agreedToNDA?: BoolFilter<"Partner"> | boolean
     createdAt?: DateTimeFilter<"Partner"> | Date | string
     updatedAt?: DateTimeFilter<"Partner"> | Date | string
-    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
-  }, "id" | "email" | "userId">
+  }, "id" | "email">
 
   export type PartnerOrderByWithAggregationInput = {
     id?: SortOrder
@@ -30479,6 +30369,7 @@ export namespace Prisma {
     phoneNumber?: SortOrder
     cityRegion?: SortOrder
     role?: SortOrder
+    state?: SortOrder
     otherRoleDetails?: SortOrderInput | SortOrder
     experienceYears?: SortOrder
     workedOnWeddings?: SortOrder
@@ -30497,7 +30388,6 @@ export namespace Prisma {
     agreedToNDA?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    userId?: SortOrderInput | SortOrder
     _count?: PartnerCountOrderByAggregateInput
     _max?: PartnerMaxOrderByAggregateInput
     _min?: PartnerMinOrderByAggregateInput
@@ -30513,6 +30403,7 @@ export namespace Prisma {
     phoneNumber?: StringWithAggregatesFilter<"Partner"> | string
     cityRegion?: StringWithAggregatesFilter<"Partner"> | string
     role?: EnumPartnerRoleWithAggregatesFilter<"Partner"> | $Enums.PartnerRole
+    state?: StringWithAggregatesFilter<"Partner"> | string
     otherRoleDetails?: StringNullableWithAggregatesFilter<"Partner"> | string | null
     experienceYears?: EnumExperienceRangeWithAggregatesFilter<"Partner"> | $Enums.ExperienceRange
     workedOnWeddings?: BoolWithAggregatesFilter<"Partner"> | boolean
@@ -30531,7 +30422,6 @@ export namespace Prisma {
     agreedToNDA?: BoolWithAggregatesFilter<"Partner"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Partner"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Partner"> | Date | string
-    userId?: StringNullableWithAggregatesFilter<"Partner"> | string | null
   }
 
   export type UserCreateInput = {
@@ -30561,7 +30451,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryCreateNestedManyWithoutUserInput
-    partner?: PartnerCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -30591,7 +30480,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateUncheckedCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryUncheckedCreateNestedManyWithoutUserInput
-    partner?: PartnerUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -30621,7 +30509,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUpdateManyWithoutUserNestedInput
-    partner?: PartnerUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -30651,7 +30538,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUncheckedUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUncheckedUpdateManyWithoutUserNestedInput
-    partner?: PartnerUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -32216,6 +32102,7 @@ export namespace Prisma {
     phoneNumber: string
     cityRegion: string
     role: $Enums.PartnerRole
+    state: string
     otherRoleDetails?: string | null
     experienceYears: $Enums.ExperienceRange
     workedOnWeddings: boolean
@@ -32234,7 +32121,6 @@ export namespace Prisma {
     agreedToNDA: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    user?: UserCreateNestedOneWithoutPartnerInput
   }
 
   export type PartnerUncheckedCreateInput = {
@@ -32244,6 +32130,7 @@ export namespace Prisma {
     phoneNumber: string
     cityRegion: string
     role: $Enums.PartnerRole
+    state: string
     otherRoleDetails?: string | null
     experienceYears: $Enums.ExperienceRange
     workedOnWeddings: boolean
@@ -32262,7 +32149,6 @@ export namespace Prisma {
     agreedToNDA: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    userId?: string | null
   }
 
   export type PartnerUpdateInput = {
@@ -32272,6 +32158,7 @@ export namespace Prisma {
     phoneNumber?: StringFieldUpdateOperationsInput | string
     cityRegion?: StringFieldUpdateOperationsInput | string
     role?: EnumPartnerRoleFieldUpdateOperationsInput | $Enums.PartnerRole
+    state?: StringFieldUpdateOperationsInput | string
     otherRoleDetails?: NullableStringFieldUpdateOperationsInput | string | null
     experienceYears?: EnumExperienceRangeFieldUpdateOperationsInput | $Enums.ExperienceRange
     workedOnWeddings?: BoolFieldUpdateOperationsInput | boolean
@@ -32290,7 +32177,6 @@ export namespace Prisma {
     agreedToNDA?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneWithoutPartnerNestedInput
   }
 
   export type PartnerUncheckedUpdateInput = {
@@ -32300,6 +32186,7 @@ export namespace Prisma {
     phoneNumber?: StringFieldUpdateOperationsInput | string
     cityRegion?: StringFieldUpdateOperationsInput | string
     role?: EnumPartnerRoleFieldUpdateOperationsInput | $Enums.PartnerRole
+    state?: StringFieldUpdateOperationsInput | string
     otherRoleDetails?: NullableStringFieldUpdateOperationsInput | string | null
     experienceYears?: EnumExperienceRangeFieldUpdateOperationsInput | $Enums.ExperienceRange
     workedOnWeddings?: BoolFieldUpdateOperationsInput | boolean
@@ -32318,7 +32205,6 @@ export namespace Prisma {
     agreedToNDA?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PartnerCreateManyInput = {
@@ -32328,6 +32214,7 @@ export namespace Prisma {
     phoneNumber: string
     cityRegion: string
     role: $Enums.PartnerRole
+    state: string
     otherRoleDetails?: string | null
     experienceYears: $Enums.ExperienceRange
     workedOnWeddings: boolean
@@ -32346,7 +32233,6 @@ export namespace Prisma {
     agreedToNDA: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    userId?: string | null
   }
 
   export type PartnerUpdateManyMutationInput = {
@@ -32356,6 +32242,7 @@ export namespace Prisma {
     phoneNumber?: StringFieldUpdateOperationsInput | string
     cityRegion?: StringFieldUpdateOperationsInput | string
     role?: EnumPartnerRoleFieldUpdateOperationsInput | $Enums.PartnerRole
+    state?: StringFieldUpdateOperationsInput | string
     otherRoleDetails?: NullableStringFieldUpdateOperationsInput | string | null
     experienceYears?: EnumExperienceRangeFieldUpdateOperationsInput | $Enums.ExperienceRange
     workedOnWeddings?: BoolFieldUpdateOperationsInput | boolean
@@ -32383,6 +32270,7 @@ export namespace Prisma {
     phoneNumber?: StringFieldUpdateOperationsInput | string
     cityRegion?: StringFieldUpdateOperationsInput | string
     role?: EnumPartnerRoleFieldUpdateOperationsInput | $Enums.PartnerRole
+    state?: StringFieldUpdateOperationsInput | string
     otherRoleDetails?: NullableStringFieldUpdateOperationsInput | string | null
     experienceYears?: EnumExperienceRangeFieldUpdateOperationsInput | $Enums.ExperienceRange
     workedOnWeddings?: BoolFieldUpdateOperationsInput | boolean
@@ -32401,7 +32289,6 @@ export namespace Prisma {
     agreedToNDA?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -32532,11 +32419,6 @@ export namespace Prisma {
     every?: TemplateWatchHistoryWhereInput
     some?: TemplateWatchHistoryWhereInput
     none?: TemplateWatchHistoryWhereInput
-  }
-
-  export type PartnerNullableScalarRelationFilter = {
-    is?: PartnerWhereInput | null
-    isNot?: PartnerWhereInput | null
   }
 
   export type SortOrderInput = {
@@ -33896,11 +33778,6 @@ export namespace Prisma {
     not?: NestedEnumApplicationStatusFilter<$PrismaModel> | $Enums.ApplicationStatus
   }
 
-  export type UserNullableScalarRelationFilter = {
-    is?: UserWhereInput | null
-    isNot?: UserWhereInput | null
-  }
-
   export type PartnerCountOrderByAggregateInput = {
     id?: SortOrder
     fullName?: SortOrder
@@ -33908,6 +33785,7 @@ export namespace Prisma {
     phoneNumber?: SortOrder
     cityRegion?: SortOrder
     role?: SortOrder
+    state?: SortOrder
     otherRoleDetails?: SortOrder
     experienceYears?: SortOrder
     workedOnWeddings?: SortOrder
@@ -33926,7 +33804,6 @@ export namespace Prisma {
     agreedToNDA?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    userId?: SortOrder
   }
 
   export type PartnerMaxOrderByAggregateInput = {
@@ -33936,6 +33813,7 @@ export namespace Prisma {
     phoneNumber?: SortOrder
     cityRegion?: SortOrder
     role?: SortOrder
+    state?: SortOrder
     otherRoleDetails?: SortOrder
     experienceYears?: SortOrder
     workedOnWeddings?: SortOrder
@@ -33953,7 +33831,6 @@ export namespace Prisma {
     agreedToNDA?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    userId?: SortOrder
   }
 
   export type PartnerMinOrderByAggregateInput = {
@@ -33963,6 +33840,7 @@ export namespace Prisma {
     phoneNumber?: SortOrder
     cityRegion?: SortOrder
     role?: SortOrder
+    state?: SortOrder
     otherRoleDetails?: SortOrder
     experienceYears?: SortOrder
     workedOnWeddings?: SortOrder
@@ -33980,7 +33858,6 @@ export namespace Prisma {
     agreedToNDA?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    userId?: SortOrder
   }
 
   export type EnumPartnerRoleWithAggregatesFilter<$PrismaModel = never> = {
@@ -34110,12 +33987,6 @@ export namespace Prisma {
     connect?: TemplateWatchHistoryWhereUniqueInput | TemplateWatchHistoryWhereUniqueInput[]
   }
 
-  export type PartnerCreateNestedOneWithoutUserInput = {
-    create?: XOR<PartnerCreateWithoutUserInput, PartnerUncheckedCreateWithoutUserInput>
-    connectOrCreate?: PartnerCreateOrConnectWithoutUserInput
-    connect?: PartnerWhereUniqueInput
-  }
-
   export type BookingUncheckedCreateNestedManyWithoutUserIdInput = {
     create?: XOR<BookingCreateWithoutUserIdInput, BookingUncheckedCreateWithoutUserIdInput> | BookingCreateWithoutUserIdInput[] | BookingUncheckedCreateWithoutUserIdInput[]
     connectOrCreate?: BookingCreateOrConnectWithoutUserIdInput | BookingCreateOrConnectWithoutUserIdInput[]
@@ -34191,12 +34062,6 @@ export namespace Prisma {
     connectOrCreate?: TemplateWatchHistoryCreateOrConnectWithoutUserInput | TemplateWatchHistoryCreateOrConnectWithoutUserInput[]
     createMany?: TemplateWatchHistoryCreateManyUserInputEnvelope
     connect?: TemplateWatchHistoryWhereUniqueInput | TemplateWatchHistoryWhereUniqueInput[]
-  }
-
-  export type PartnerUncheckedCreateNestedOneWithoutUserInput = {
-    create?: XOR<PartnerCreateWithoutUserInput, PartnerUncheckedCreateWithoutUserInput>
-    connectOrCreate?: PartnerCreateOrConnectWithoutUserInput
-    connect?: PartnerWhereUniqueInput
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -34377,16 +34242,6 @@ export namespace Prisma {
     deleteMany?: TemplateWatchHistoryScalarWhereInput | TemplateWatchHistoryScalarWhereInput[]
   }
 
-  export type PartnerUpdateOneWithoutUserNestedInput = {
-    create?: XOR<PartnerCreateWithoutUserInput, PartnerUncheckedCreateWithoutUserInput>
-    connectOrCreate?: PartnerCreateOrConnectWithoutUserInput
-    upsert?: PartnerUpsertWithoutUserInput
-    disconnect?: PartnerWhereInput | boolean
-    delete?: PartnerWhereInput | boolean
-    connect?: PartnerWhereUniqueInput
-    update?: XOR<XOR<PartnerUpdateToOneWithWhereWithoutUserInput, PartnerUpdateWithoutUserInput>, PartnerUncheckedUpdateWithoutUserInput>
-  }
-
   export type BookingUncheckedUpdateManyWithoutUserIdNestedInput = {
     create?: XOR<BookingCreateWithoutUserIdInput, BookingUncheckedCreateWithoutUserIdInput> | BookingCreateWithoutUserIdInput[] | BookingUncheckedCreateWithoutUserIdInput[]
     connectOrCreate?: BookingCreateOrConnectWithoutUserIdInput | BookingCreateOrConnectWithoutUserIdInput[]
@@ -34539,16 +34394,6 @@ export namespace Prisma {
     update?: TemplateWatchHistoryUpdateWithWhereUniqueWithoutUserInput | TemplateWatchHistoryUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: TemplateWatchHistoryUpdateManyWithWhereWithoutUserInput | TemplateWatchHistoryUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: TemplateWatchHistoryScalarWhereInput | TemplateWatchHistoryScalarWhereInput[]
-  }
-
-  export type PartnerUncheckedUpdateOneWithoutUserNestedInput = {
-    create?: XOR<PartnerCreateWithoutUserInput, PartnerUncheckedCreateWithoutUserInput>
-    connectOrCreate?: PartnerCreateOrConnectWithoutUserInput
-    upsert?: PartnerUpsertWithoutUserInput
-    disconnect?: PartnerWhereInput | boolean
-    delete?: PartnerWhereInput | boolean
-    connect?: PartnerWhereUniqueInput
-    update?: XOR<XOR<PartnerUpdateToOneWithWhereWithoutUserInput, PartnerUpdateWithoutUserInput>, PartnerUncheckedUpdateWithoutUserInput>
   }
 
   export type UserCreateNestedOneWithoutBookingsInput = {
@@ -35356,12 +35201,6 @@ export namespace Prisma {
     set: string[]
   }
 
-  export type UserCreateNestedOneWithoutPartnerInput = {
-    create?: XOR<UserCreateWithoutPartnerInput, UserUncheckedCreateWithoutPartnerInput>
-    connectOrCreate?: UserCreateOrConnectWithoutPartnerInput
-    connect?: UserWhereUniqueInput
-  }
-
   export type EnumPartnerRoleFieldUpdateOperationsInput = {
     set?: $Enums.PartnerRole
   }
@@ -35385,16 +35224,6 @@ export namespace Prisma {
 
   export type EnumApplicationStatusFieldUpdateOperationsInput = {
     set?: $Enums.ApplicationStatus
-  }
-
-  export type UserUpdateOneWithoutPartnerNestedInput = {
-    create?: XOR<UserCreateWithoutPartnerInput, UserUncheckedCreateWithoutPartnerInput>
-    connectOrCreate?: UserCreateOrConnectWithoutPartnerInput
-    upsert?: UserUpsertWithoutPartnerInput
-    disconnect?: UserWhereInput | boolean
-    delete?: UserWhereInput | boolean
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPartnerInput, UserUpdateWithoutPartnerInput>, UserUncheckedUpdateWithoutPartnerInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -36235,65 +36064,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type PartnerCreateWithoutUserInput = {
-    id?: string
-    fullName: string
-    email: string
-    phoneNumber: string
-    cityRegion: string
-    role: $Enums.PartnerRole
-    otherRoleDetails?: string | null
-    experienceYears: $Enums.ExperienceRange
-    workedOnWeddings: boolean
-    portfolioUrl?: string | null
-    governmentIdUrl?: string | null
-    businessCertUrl?: string | null
-    workSamplesUrls?: PartnerCreateworkSamplesUrlsInput | string[]
-    motivationNote: string
-    preferredModel: $Enums.WorkingModel
-    availability: $Enums.AvailabilityType
-    applicationStatus?: $Enums.ApplicationStatus
-    reviewedBy?: string | null
-    reviewNotes?: string | null
-    agreedNoLeadLeakage: boolean
-    agreedPlatformDeals: boolean
-    agreedToNDA: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type PartnerUncheckedCreateWithoutUserInput = {
-    id?: string
-    fullName: string
-    email: string
-    phoneNumber: string
-    cityRegion: string
-    role: $Enums.PartnerRole
-    otherRoleDetails?: string | null
-    experienceYears: $Enums.ExperienceRange
-    workedOnWeddings: boolean
-    portfolioUrl?: string | null
-    governmentIdUrl?: string | null
-    businessCertUrl?: string | null
-    workSamplesUrls?: PartnerCreateworkSamplesUrlsInput | string[]
-    motivationNote: string
-    preferredModel: $Enums.WorkingModel
-    availability: $Enums.AvailabilityType
-    applicationStatus?: $Enums.ApplicationStatus
-    reviewedBy?: string | null
-    reviewNotes?: string | null
-    agreedNoLeadLeakage: boolean
-    agreedPlatformDeals: boolean
-    agreedToNDA: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type PartnerCreateOrConnectWithoutUserInput = {
-    where: PartnerWhereUniqueInput
-    create: XOR<PartnerCreateWithoutUserInput, PartnerUncheckedCreateWithoutUserInput>
-  }
-
   export type BookingUpsertWithWhereUniqueWithoutUserIdInput = {
     where: BookingWhereUniqueInput
     update: XOR<BookingUpdateWithoutUserIdInput, BookingUncheckedUpdateWithoutUserIdInput>
@@ -36627,71 +36397,6 @@ export namespace Prisma {
     watchedAt?: DateTimeFilter<"TemplateWatchHistory"> | Date | string
   }
 
-  export type PartnerUpsertWithoutUserInput = {
-    update: XOR<PartnerUpdateWithoutUserInput, PartnerUncheckedUpdateWithoutUserInput>
-    create: XOR<PartnerCreateWithoutUserInput, PartnerUncheckedCreateWithoutUserInput>
-    where?: PartnerWhereInput
-  }
-
-  export type PartnerUpdateToOneWithWhereWithoutUserInput = {
-    where?: PartnerWhereInput
-    data: XOR<PartnerUpdateWithoutUserInput, PartnerUncheckedUpdateWithoutUserInput>
-  }
-
-  export type PartnerUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    fullName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    cityRegion?: StringFieldUpdateOperationsInput | string
-    role?: EnumPartnerRoleFieldUpdateOperationsInput | $Enums.PartnerRole
-    otherRoleDetails?: NullableStringFieldUpdateOperationsInput | string | null
-    experienceYears?: EnumExperienceRangeFieldUpdateOperationsInput | $Enums.ExperienceRange
-    workedOnWeddings?: BoolFieldUpdateOperationsInput | boolean
-    portfolioUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    governmentIdUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    businessCertUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    workSamplesUrls?: PartnerUpdateworkSamplesUrlsInput | string[]
-    motivationNote?: StringFieldUpdateOperationsInput | string
-    preferredModel?: EnumWorkingModelFieldUpdateOperationsInput | $Enums.WorkingModel
-    availability?: EnumAvailabilityTypeFieldUpdateOperationsInput | $Enums.AvailabilityType
-    applicationStatus?: EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
-    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
-    reviewNotes?: NullableStringFieldUpdateOperationsInput | string | null
-    agreedNoLeadLeakage?: BoolFieldUpdateOperationsInput | boolean
-    agreedPlatformDeals?: BoolFieldUpdateOperationsInput | boolean
-    agreedToNDA?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type PartnerUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    fullName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    cityRegion?: StringFieldUpdateOperationsInput | string
-    role?: EnumPartnerRoleFieldUpdateOperationsInput | $Enums.PartnerRole
-    otherRoleDetails?: NullableStringFieldUpdateOperationsInput | string | null
-    experienceYears?: EnumExperienceRangeFieldUpdateOperationsInput | $Enums.ExperienceRange
-    workedOnWeddings?: BoolFieldUpdateOperationsInput | boolean
-    portfolioUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    governmentIdUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    businessCertUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    workSamplesUrls?: PartnerUpdateworkSamplesUrlsInput | string[]
-    motivationNote?: StringFieldUpdateOperationsInput | string
-    preferredModel?: EnumWorkingModelFieldUpdateOperationsInput | $Enums.WorkingModel
-    availability?: EnumAvailabilityTypeFieldUpdateOperationsInput | $Enums.AvailabilityType
-    applicationStatus?: EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
-    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
-    reviewNotes?: NullableStringFieldUpdateOperationsInput | string | null
-    agreedNoLeadLeakage?: BoolFieldUpdateOperationsInput | boolean
-    agreedPlatformDeals?: BoolFieldUpdateOperationsInput | boolean
-    agreedToNDA?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type UserCreateWithoutBookingsInput = {
     id?: string
     email: string
@@ -36718,7 +36423,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryCreateNestedManyWithoutUserInput
-    partner?: PartnerCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutBookingsInput = {
@@ -36747,7 +36451,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateUncheckedCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryUncheckedCreateNestedManyWithoutUserInput
-    partner?: PartnerUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutBookingsInput = {
@@ -36792,7 +36495,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUpdateManyWithoutUserNestedInput
-    partner?: PartnerUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBookingsInput = {
@@ -36821,7 +36523,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUncheckedUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUncheckedUpdateManyWithoutUserNestedInput
-    partner?: PartnerUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateWithoutCartInput = {
@@ -36850,7 +36551,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryCreateNestedManyWithoutUserInput
-    partner?: PartnerCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCartInput = {
@@ -36879,7 +36579,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateUncheckedCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryUncheckedCreateNestedManyWithoutUserInput
-    partner?: PartnerUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCartInput = {
@@ -36924,7 +36623,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUpdateManyWithoutUserNestedInput
-    partner?: PartnerUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCartInput = {
@@ -36953,7 +36651,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUncheckedUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUncheckedUpdateManyWithoutUserNestedInput
-    partner?: PartnerUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateWithoutChecklistsInput = {
@@ -36982,7 +36679,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryCreateNestedManyWithoutUserInput
-    partner?: PartnerCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutChecklistsInput = {
@@ -37011,7 +36707,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateUncheckedCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryUncheckedCreateNestedManyWithoutUserInput
-    partner?: PartnerUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutChecklistsInput = {
@@ -37056,7 +36751,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUpdateManyWithoutUserNestedInput
-    partner?: PartnerUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutChecklistsInput = {
@@ -37085,7 +36779,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUncheckedUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUncheckedUpdateManyWithoutUserNestedInput
-    partner?: PartnerUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateWithoutEventInput = {
@@ -37114,7 +36807,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryCreateNestedManyWithoutUserInput
-    partner?: PartnerCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutEventInput = {
@@ -37143,7 +36835,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateUncheckedCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryUncheckedCreateNestedManyWithoutUserInput
-    partner?: PartnerUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutEventInput = {
@@ -37278,7 +36969,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUpdateManyWithoutUserNestedInput
-    partner?: PartnerUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutEventInput = {
@@ -37307,7 +36997,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUncheckedUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUncheckedUpdateManyWithoutUserNestedInput
-    partner?: PartnerUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type EventTaskUpsertWithWhereUniqueWithoutEventInput = {
@@ -37901,7 +37590,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryCreateNestedManyWithoutUserInput
-    partner?: PartnerCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPaymentDetailsInput = {
@@ -37930,7 +37618,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateUncheckedCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryUncheckedCreateNestedManyWithoutUserInput
-    partner?: PartnerUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPaymentDetailsInput = {
@@ -38020,7 +37707,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUpdateManyWithoutUserNestedInput
-    partner?: PartnerUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPaymentDetailsInput = {
@@ -38049,7 +37735,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUncheckedUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUncheckedUpdateManyWithoutUserNestedInput
-    partner?: PartnerUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type InvitationTemplateUpsertWithoutPaymentDetailsInput = {
@@ -38129,7 +37814,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryCreateNestedManyWithoutUserInput
-    partner?: PartnerCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutReviewsInput = {
@@ -38158,7 +37842,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateUncheckedCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryUncheckedCreateNestedManyWithoutUserInput
-    partner?: PartnerUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutReviewsInput = {
@@ -38203,7 +37886,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUpdateManyWithoutUserNestedInput
-    partner?: PartnerUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReviewsInput = {
@@ -38232,7 +37914,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUncheckedUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUncheckedUpdateManyWithoutUserNestedInput
-    partner?: PartnerUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateWithoutGuestsInput = {
@@ -38261,7 +37942,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryCreateNestedManyWithoutUserInput
-    partner?: PartnerCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutGuestsInput = {
@@ -38290,7 +37970,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateUncheckedCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryUncheckedCreateNestedManyWithoutUserInput
-    partner?: PartnerUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutGuestsInput = {
@@ -38335,7 +38014,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUpdateManyWithoutUserNestedInput
-    partner?: PartnerUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutGuestsInput = {
@@ -38364,7 +38042,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUncheckedUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUncheckedUpdateManyWithoutUserNestedInput
-    partner?: PartnerUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateWithoutInvitationTemplateInput = {
@@ -38393,7 +38070,6 @@ export namespace Prisma {
     event?: EventCreateNestedManyWithoutUserInput
     likedBlogs?: LikedBlogCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryCreateNestedManyWithoutUserInput
-    partner?: PartnerCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutInvitationTemplateInput = {
@@ -38422,7 +38098,6 @@ export namespace Prisma {
     event?: EventUncheckedCreateNestedManyWithoutUserInput
     likedBlogs?: LikedBlogUncheckedCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryUncheckedCreateNestedManyWithoutUserInput
-    partner?: PartnerUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutInvitationTemplateInput = {
@@ -38529,7 +38204,6 @@ export namespace Prisma {
     event?: EventUpdateManyWithoutUserNestedInput
     likedBlogs?: LikedBlogUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUpdateManyWithoutUserNestedInput
-    partner?: PartnerUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutInvitationTemplateInput = {
@@ -38558,7 +38232,6 @@ export namespace Prisma {
     event?: EventUncheckedUpdateManyWithoutUserNestedInput
     likedBlogs?: LikedBlogUncheckedUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUncheckedUpdateManyWithoutUserNestedInput
-    partner?: PartnerUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type PaymentDetailsUpsertWithWhereUniqueWithoutInvitationTemplateInput = {
@@ -38619,7 +38292,6 @@ export namespace Prisma {
     event?: EventCreateNestedManyWithoutUserInput
     likedBlogs?: LikedBlogCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateCreateNestedManyWithoutUserInput
-    partner?: PartnerCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutWatchHistoryInput = {
@@ -38648,7 +38320,6 @@ export namespace Prisma {
     event?: EventUncheckedCreateNestedManyWithoutUserInput
     likedBlogs?: LikedBlogUncheckedCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateUncheckedCreateNestedManyWithoutUserInput
-    partner?: PartnerUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutWatchHistoryInput = {
@@ -38738,7 +38409,6 @@ export namespace Prisma {
     event?: EventUpdateManyWithoutUserNestedInput
     likedBlogs?: LikedBlogUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUpdateManyWithoutUserNestedInput
-    partner?: PartnerUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutWatchHistoryInput = {
@@ -38767,7 +38437,6 @@ export namespace Prisma {
     event?: EventUncheckedUpdateManyWithoutUserNestedInput
     likedBlogs?: LikedBlogUncheckedUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUncheckedUpdateManyWithoutUserNestedInput
-    partner?: PartnerUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type InvitationTemplateUpsertWithoutWatchHistoryInput = {
@@ -38847,7 +38516,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryCreateNestedManyWithoutUserInput
-    partner?: PartnerCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutUserDataTemplateInput = {
@@ -38876,7 +38544,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateUncheckedCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryUncheckedCreateNestedManyWithoutUserInput
-    partner?: PartnerUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutUserDataTemplateInput = {
@@ -38921,7 +38588,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUpdateManyWithoutUserNestedInput
-    partner?: PartnerUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUserDataTemplateInput = {
@@ -38950,7 +38616,6 @@ export namespace Prisma {
     likedBlogs?: LikedBlogUncheckedUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUncheckedUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUncheckedUpdateManyWithoutUserNestedInput
-    partner?: PartnerUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type TagsCreateWithoutBlogsInput = {
@@ -39255,7 +38920,6 @@ export namespace Prisma {
     event?: EventCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryCreateNestedManyWithoutUserInput
-    partner?: PartnerCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutLikedBlogsInput = {
@@ -39284,7 +38948,6 @@ export namespace Prisma {
     event?: EventUncheckedCreateNestedManyWithoutUserInput
     invitationTemplate?: InvitationTemplateUncheckedCreateNestedManyWithoutUserInput
     watchHistory?: TemplateWatchHistoryUncheckedCreateNestedManyWithoutUserInput
-    partner?: PartnerUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutLikedBlogsInput = {
@@ -39366,7 +39029,6 @@ export namespace Prisma {
     event?: EventUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUpdateManyWithoutUserNestedInput
-    partner?: PartnerUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutLikedBlogsInput = {
@@ -39395,7 +39057,6 @@ export namespace Prisma {
     event?: EventUncheckedUpdateManyWithoutUserNestedInput
     invitationTemplate?: InvitationTemplateUncheckedUpdateManyWithoutUserNestedInput
     watchHistory?: TemplateWatchHistoryUncheckedUpdateManyWithoutUserNestedInput
-    partner?: PartnerUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type BlogUpsertWithoutLikedByInput = {
@@ -39439,138 +39100,6 @@ export namespace Prisma {
     authorId?: StringFieldUpdateOperationsInput | string
     tags?: TagsUncheckedUpdateManyWithoutBlogsNestedInput
     comments?: CommentUncheckedUpdateManyWithoutBlogNestedInput
-  }
-
-  export type UserCreateWithoutPartnerInput = {
-    id?: string
-    email: string
-    refresh_Token?: string | null
-    password_hash?: string | null
-    googleUid?: string | null
-    resetPassword_Token?: string | null
-    profile_photo?: string | null
-    user_name: string
-    phone_number?: string | null
-    role: $Enums.Role
-    wedding_date?: Date | string | null
-    wedding_location?: string | null
-    created_at?: Date | string
-    is_verified?: boolean
-    updated_at?: Date | string | null
-    bookings?: BookingCreateNestedManyWithoutUserIdInput
-    reviews?: ReviewCreateNestedManyWithoutUserInput
-    cart?: CartCreateNestedManyWithoutUserInput
-    checklists?: ChecklistCreateNestedManyWithoutUserInput
-    guests?: GuestCreateNestedManyWithoutUserInput
-    paymentDetails?: PaymentDetailsCreateNestedManyWithoutUserInput
-    userDataTemplate?: UserDataTemplateCreateNestedManyWithoutUserInput
-    event?: EventCreateNestedManyWithoutUserInput
-    likedBlogs?: LikedBlogCreateNestedManyWithoutUserInput
-    invitationTemplate?: InvitationTemplateCreateNestedManyWithoutUserInput
-    watchHistory?: TemplateWatchHistoryCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutPartnerInput = {
-    id?: string
-    email: string
-    refresh_Token?: string | null
-    password_hash?: string | null
-    googleUid?: string | null
-    resetPassword_Token?: string | null
-    profile_photo?: string | null
-    user_name: string
-    phone_number?: string | null
-    role: $Enums.Role
-    wedding_date?: Date | string | null
-    wedding_location?: string | null
-    created_at?: Date | string
-    is_verified?: boolean
-    updated_at?: Date | string | null
-    bookings?: BookingUncheckedCreateNestedManyWithoutUserIdInput
-    reviews?: ReviewUncheckedCreateNestedManyWithoutUserInput
-    cart?: CartUncheckedCreateNestedManyWithoutUserInput
-    checklists?: ChecklistUncheckedCreateNestedManyWithoutUserInput
-    guests?: GuestUncheckedCreateNestedManyWithoutUserInput
-    paymentDetails?: PaymentDetailsUncheckedCreateNestedManyWithoutUserInput
-    userDataTemplate?: UserDataTemplateUncheckedCreateNestedManyWithoutUserInput
-    event?: EventUncheckedCreateNestedManyWithoutUserInput
-    likedBlogs?: LikedBlogUncheckedCreateNestedManyWithoutUserInput
-    invitationTemplate?: InvitationTemplateUncheckedCreateNestedManyWithoutUserInput
-    watchHistory?: TemplateWatchHistoryUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutPartnerInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutPartnerInput, UserUncheckedCreateWithoutPartnerInput>
-  }
-
-  export type UserUpsertWithoutPartnerInput = {
-    update: XOR<UserUpdateWithoutPartnerInput, UserUncheckedUpdateWithoutPartnerInput>
-    create: XOR<UserCreateWithoutPartnerInput, UserUncheckedCreateWithoutPartnerInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutPartnerInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutPartnerInput, UserUncheckedUpdateWithoutPartnerInput>
-  }
-
-  export type UserUpdateWithoutPartnerInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    refresh_Token?: NullableStringFieldUpdateOperationsInput | string | null
-    password_hash?: NullableStringFieldUpdateOperationsInput | string | null
-    googleUid?: NullableStringFieldUpdateOperationsInput | string | null
-    resetPassword_Token?: NullableStringFieldUpdateOperationsInput | string | null
-    profile_photo?: NullableStringFieldUpdateOperationsInput | string | null
-    user_name?: StringFieldUpdateOperationsInput | string
-    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    wedding_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    wedding_location?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    is_verified?: BoolFieldUpdateOperationsInput | boolean
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    bookings?: BookingUpdateManyWithoutUserIdNestedInput
-    reviews?: ReviewUpdateManyWithoutUserNestedInput
-    cart?: CartUpdateManyWithoutUserNestedInput
-    checklists?: ChecklistUpdateManyWithoutUserNestedInput
-    guests?: GuestUpdateManyWithoutUserNestedInput
-    paymentDetails?: PaymentDetailsUpdateManyWithoutUserNestedInput
-    userDataTemplate?: UserDataTemplateUpdateManyWithoutUserNestedInput
-    event?: EventUpdateManyWithoutUserNestedInput
-    likedBlogs?: LikedBlogUpdateManyWithoutUserNestedInput
-    invitationTemplate?: InvitationTemplateUpdateManyWithoutUserNestedInput
-    watchHistory?: TemplateWatchHistoryUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutPartnerInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    refresh_Token?: NullableStringFieldUpdateOperationsInput | string | null
-    password_hash?: NullableStringFieldUpdateOperationsInput | string | null
-    googleUid?: NullableStringFieldUpdateOperationsInput | string | null
-    resetPassword_Token?: NullableStringFieldUpdateOperationsInput | string | null
-    profile_photo?: NullableStringFieldUpdateOperationsInput | string | null
-    user_name?: StringFieldUpdateOperationsInput | string
-    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    wedding_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    wedding_location?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    is_verified?: BoolFieldUpdateOperationsInput | boolean
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    bookings?: BookingUncheckedUpdateManyWithoutUserIdNestedInput
-    reviews?: ReviewUncheckedUpdateManyWithoutUserNestedInput
-    cart?: CartUncheckedUpdateManyWithoutUserNestedInput
-    checklists?: ChecklistUncheckedUpdateManyWithoutUserNestedInput
-    guests?: GuestUncheckedUpdateManyWithoutUserNestedInput
-    paymentDetails?: PaymentDetailsUncheckedUpdateManyWithoutUserNestedInput
-    userDataTemplate?: UserDataTemplateUncheckedUpdateManyWithoutUserNestedInput
-    event?: EventUncheckedUpdateManyWithoutUserNestedInput
-    likedBlogs?: LikedBlogUncheckedUpdateManyWithoutUserNestedInput
-    invitationTemplate?: InvitationTemplateUncheckedUpdateManyWithoutUserNestedInput
-    watchHistory?: TemplateWatchHistoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type BookingCreateManyUserIdInput = {

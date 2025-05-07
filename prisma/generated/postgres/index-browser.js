@@ -353,6 +353,7 @@ exports.Prisma.PartnerScalarFieldEnum = {
   phoneNumber: 'phoneNumber',
   cityRegion: 'cityRegion',
   role: 'role',
+  state: 'state',
   otherRoleDetails: 'otherRoleDetails',
   experienceYears: 'experienceYears',
   workedOnWeddings: 'workedOnWeddings',
@@ -370,8 +371,7 @@ exports.Prisma.PartnerScalarFieldEnum = {
   agreedPlatformDeals: 'agreedPlatformDeals',
   agreedToNDA: 'agreedToNDA',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  userId: 'userId'
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -406,7 +406,8 @@ exports.Prisma.JsonNullValueFilter = {
 exports.Role = exports.$Enums.Role = {
   USER: 'USER',
   ADMIN: 'ADMIN',
-  SUPER_ADMIN: 'SUPER_ADMIN'
+  SUPER_ADMIN: 'SUPER_ADMIN',
+  PARTNER: 'PARTNER'
 };
 
 exports.GuestStatus = exports.$Enums.GuestStatus = {

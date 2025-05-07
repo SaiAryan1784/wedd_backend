@@ -127,6 +127,7 @@ exports.Prisma.VendorScalarFieldEnum = {
   state: 'state',
   password_hash: 'password_hash',
   phone_number: 'phone_number',
+  profileViews: 'profileViews',
   social_networks: 'social_networks',
   faqs: 'faqs',
   created_at: 'created_at',
@@ -312,6 +313,63 @@ exports.Prisma.CounterScalarFieldEnum = {
   value: 'value'
 };
 
+exports.Prisma.InvitationTemplateScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  userId: 'userId',
+  jsonData: 'jsonData',
+  price: 'price',
+  categoryByAmount: 'categoryByAmount',
+  categoryByMood: 'categoryByMood',
+  categoryByRequirement: 'categoryByRequirement',
+  additionalTags: 'additionalTags',
+  designedBy: 'designedBy',
+  thumbnailUrl: 'thumbnailUrl',
+  rating: 'rating',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TemplateWatchHistoryScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  templateId: 'templateId',
+  watchedAt: 'watchedAt'
+};
+
+exports.Prisma.UserDataTemplateScalarFieldEnum = {
+  userId: 'userId',
+  template_id: 'template_id',
+  eventHeading: 'eventHeading',
+  eventSubheading: 'eventSubheading',
+  brideName: 'brideName',
+  groomName: 'groomName',
+  eventDate: 'eventDate',
+  weddingTime: 'weddingTime',
+  weddingLocation: 'weddingLocation',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PaymentDetailsScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  paymentId: 'paymentId',
+  razorpayResponse: 'razorpayResponse',
+  orderStatus: 'orderStatus',
+  paymentStatus: 'paymentStatus',
+  amount: 'amount',
+  currency: 'currency',
+  purchasedAt: 'purchasedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId',
+  templateId: 'templateId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -335,6 +393,33 @@ exports.PaymentStatus = exports.$Enums.PaymentStatus = {
   REFUNDED: 'REFUNDED'
 };
 
+exports.CategoryByAmount = exports.$Enums.CategoryByAmount = {
+  FREE: 'FREE',
+  PAID: 'PAID'
+};
+
+exports.CategoryByMood = exports.$Enums.CategoryByMood = {
+  BIRTHDAY: 'BIRTHDAY',
+  ROMANCE: 'ROMANCE',
+  WEDDING: 'WEDDING',
+  ANNIVERSARY: 'ANNIVERSARY',
+  CORPORATE: 'CORPORATE',
+  LOVE: 'LOVE',
+  COUPLE: 'COUPLE'
+};
+
+exports.CategoryByRequirement = exports.$Enums.CategoryByRequirement = {
+  HOT: 'HOT',
+  POPULAR: 'POPULAR',
+  LATEST: 'LATEST'
+};
+
+exports.TemplateStatus = exports.$Enums.TemplateStatus = {
+  DRAFT: 'DRAFT',
+  PUBLISHED: 'PUBLISHED',
+  ARCHIVED: 'ARCHIVED'
+};
+
 exports.Prisma.ModelName = {
   Vendor: 'Vendor',
   Service: 'Service',
@@ -349,7 +434,11 @@ exports.Prisma.ModelName = {
   Subscription: 'Subscription',
   Payment: 'Payment',
   Invoice: 'Invoice',
-  Counter: 'Counter'
+  Counter: 'Counter',
+  InvitationTemplate: 'InvitationTemplate',
+  TemplateWatchHistory: 'TemplateWatchHistory',
+  UserDataTemplate: 'UserDataTemplate',
+  PaymentDetails: 'PaymentDetails'
 };
 
 /**
